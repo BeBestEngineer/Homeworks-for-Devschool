@@ -20,7 +20,6 @@ echo $min_day2;
 
 echo '<br>'; 
 
-
 #var_dump( $date );
 
 array_multisort( $date, SORT_ASC );
@@ -36,15 +35,16 @@ $date_date[] = date ('d.m.Y', $date[4]);*/
 
 $selected = array_pop( $date );
 
-$selected = date( 'd.m.Y H:i:s', $selected );
-echo 'Наибольшая дата массива = ',$selected;
+$selected_1 = date( 'd.m.Y H:i:s', $selected );
+echo 'Наибольшая дата массива = ',$selected_1;
 
 echo '<br>';
 echo 'Временная зона сервера до - ', date_default_timezone_get(); 
 date_default_timezone_set('America/New_York');
 echo '<br>'; 
 echo 'Временная зона сервера после - ', date_default_timezone_get(); 
-echo '<br>';
-echo 'Наибольшая дата массива = ',$selected;
 
+$selected_2 = date( 'd.m.Y H:i:s', $selected );
+echo '<br>';
+echo 'Наибольшая дата массива = ',$selected_2;
 ?>

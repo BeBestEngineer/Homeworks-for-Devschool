@@ -20,20 +20,19 @@ echo $min_day2;
 
 echo '<br>'; 
 
-/*
-var_dump( $date );
 
-array_multisort($date);
+#var_dump( $date );
 
-$date_date[] = date ('d.m.Y', $date[0]);
+array_multisort( $date, SORT_ASC );
+
+/*$date_date[] = date ('d.m.Y', $date[0]);
 $date_date[] = date ('d.m.Y', $date[1]);
 $date_date[] = date ('d.m.Y', $date[2]);
 $date_date[] = date ('d.m.Y', $date[3]);
-$date_date[] = date ('d.m.Y', $date[4]);
+$date_date[] = date ('d.m.Y', $date[4]);*/
 
-var_dump( $date );
-var_dump( $date_date );
-*/
+#var_dump( $date );
+#var_dump( $date_date );
 
 $selected = array_pop( $date );
 

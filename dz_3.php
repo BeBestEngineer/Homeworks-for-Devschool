@@ -10,32 +10,21 @@ echo $min_day1;
 
 echo '<br>';
 echo 'Наименьший день недели в массиве = ';
-$min_day2 = min(date('l', $date[0]), date('l', $date[1]), date('l', $date[2]), date('l', $date[3]), date('l', $date[4]) );
+$min_day2 = min(date('N', $date[0]), date('N', $date[1]), date('N', $date[2]), date('N', $date[3]), date('N', $date[4]) );
 echo $min_day2;
 
 echo '<br>';
 echo 'Наибольший месяц в массиве = ';
-$min_day2 = min(date('F', $date[0]), date('F', $date[1]), date('F', $date[2]), date('F', $date[3]), date('F', $date[4]) );
+$min_day2 = max(date('n', $date[0]), date('n', $date[1]), date('n', $date[2]), date('n', $date[3]), date('n', $date[4]) );
 echo $min_day2;
 
-echo '<br>'; 
-
-#var_dump( $date );
-
 array_multisort( $date, SORT_ASC );
-
-/*$date_date[] = date ('d.m.Y', $date[0]);
-$date_date[] = date ('d.m.Y', $date[1]);
-$date_date[] = date ('d.m.Y', $date[2]);
-$date_date[] = date ('d.m.Y', $date[3]);
-$date_date[] = date ('d.m.Y', $date[4]);*/
-
-#var_dump( $date );
-#var_dump( $date_date );
 
 $selected = array_pop( $date );
 
 $selected_1 = date( 'd.m.Y H:i:s', $selected );
+
+echo '<br>';
 echo 'Наибольшая дата массива = ',$selected_1;
 
 echo '<br>';

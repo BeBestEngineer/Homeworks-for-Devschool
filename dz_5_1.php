@@ -2,7 +2,6 @@
    error_reporting(E_ERROR|E_WARNING|E_PARSE|E_NOTICE);
     ini_set('display_errors', 1);
 
-header('Content-type: text/html; charset=utf-8');
 $news='Четыре новосибирские компании вошли в сотню лучших работодателей
 Выставка университетов США: открой новые горизонты
 Оценку «неудовлетворительно» по качеству получает каждая 5-я квартира в новостройке
@@ -14,41 +13,37 @@ $news='Четыре новосибирские компании вошли в с
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
 $news = explode("\n", $news);
 
-function All_news ( $p) {
-    static $n = -1;
-    echo '<br>';
-    $n = $n + 1;
-    echo ''.$n.'. '.$p.'';
+# Точка входа
+if (  isset( $_GET['id'] ) && $_GET['id'] >= 0 && $_GET['id'] <= 8 ) {
+    Specific_news ();
+}       
+elseif ( isset( $_GET['id'] ) || count( $_GET ) == 0 ) {
+    All_news ();
 }
 
-if (!isset($_GET['news_number']) && !isset($_GET['news_menu'])) {
-    echo '<br>';
-    echo '<h1>Ошибка 404</h1>';
-    header('HTTP/1.0 404 NOT FOUND');
-} 
-else {
-        #echo 'Проверка number или menu';
-                    if (isset($_GET['news_menu'])) {
-                    #echo 'Проверка значений news_menu'; - не выполняется
-                    echo '<h4>Список новостей (для выбора новости введите в адресную строку параметр news_number=0...8):</h4>';
-                    array_map('All_news', $news);
-                    echo '<br>';
-                } 
-                else {
-                        #echo 'Проверка значений news_number';
-                                    if ($_GET['news_number'] == '' || count($_GET) > 1
-                                    || strlen ( ltrim( $_GET['news_number'] ) ) > 1
-                                    || preg_match('@[A-z А-я 9]@u',$_GET['news_number']) ) {
-                                    #echo 'Ошибка 404' - была заменена на вывод Списка новостей
-                                    echo '<h4>Список новостей(для выбора новости введите в адресную строку параметр news_number=0...8):</h4>';
-                                    array_map('All_news', $news);
-                                }
-                                else {
-                                        echo( $news [ ltrim( $_GET['news_number' ] ) ] );
-                                        echo '<br>';
-                                        echo '<i>Для перехода к списку новостей введите в адресную строку параметр news_menu</i>';
-                                }                               
-                }               
+# Проверка передачи параметра id
+if ( !isset( $_GET['id'] ) && count( $_GET ) !== 0 ) {
+    echo '<h1> Ошибка 404 </h1>';
+    header("HTTP/1.0 404 Not Found");
 }
 
-?>
+# Функция вывода всего списка новостей:
+function All_news () {
+    global $news;
+    
+    echo '<h4>Список новостей (для выбора новости введите в адресную строку параметр news_number=0...8):</h4>';
+        foreach ( $news as $key => $value ) {
+            echo ''.$key.'. '.$value.'';
+            echo '<br>';
+    }
+}
+
+# Функция вывода конкретной новости:
+function Specific_news () {
+    global $news;
+    
+    echo ''.$_GET['id' ].'. ';
+    echo $news [ $_GET['id' ] ];
+    echo '<br>';
+    echo ' &nbsp  &nbsp <i>Для перехода к списку новостей введите в адресную строку \'xaver.loc\'</i>';
+}

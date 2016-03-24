@@ -31,8 +31,5 @@ $_SESSION['a'][] = $_POST;
 #Удаление объявления
     if ( isset( $_GET ['del_ad'] ) ) {
         Del_Ad();
-    }    
-
-
-
+    }
 ?>

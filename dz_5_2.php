@@ -14,28 +14,42 @@ $news='Четыре новосибирские компании вошли в с
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
 $news = explode("\n", $news);
 
-function All_news ( $p) {
-    static $n = -1;
-    echo '<br>';
-    $n = $n + 1;
-    echo ''.$n.'. '.$p.'';
-}
+var_dump ( $_POST );
 
+# Точка входа
 if (count($_POST) == 0 || strlen($_POST['id']) == 0) {
     echo '<i>Введите знак \'#\' чтобы просмотреть список новостей</i>';
 } elseif ($_POST['id'] == '#') {
-    echo 'Список новостей (для выбора новости введите в <strong>текстовое поле</strong> цифру от 0 до 8 чтобы просмотреть новость)';
-    echo '<hr>';
-    array_map('All_news', $news);
+    All_news ();
 } elseif (preg_match('@[0-8]@u', $_POST['id']) && strlen($_POST['id']) <= 1) {
-    echo $news [$_POST['id']];
-     echo '<br>';
-      echo '<i>Чтобы венрнуться к списку новостей введите в <strong>текстовое поле</strong> знак \'#\'</i>';
+    Specific_news ();
 } else {
     echo '<h1>Ошибка 404</h1>';
-    header('HTTP/1.0 404 NOT FOUND');
+    header("HTTP/1.0 404 Not Found");
+}
+        
+# Функция вывода всего списка новостей:
+function All_news () {
+    global $news;
+    
+    echo '<h4>Список новостей (для выбора новости введите в адресную строку параметр news_number=0...8):</h4>';
+        foreach ( $news as $key => $value ) {
+            echo ''.$key.'. '.$value.'';
+            echo '<br>';
+    }
+}        
+
+# Функция вывода конкретной новости:
+function Specific_news () {
+    global $news;
+    
+    echo ''.$_POST['id' ].'. ';
+    echo $news [ $_POST['id' ] ];
+    echo '<br>';
+    echo '<i>Чтобы венрнуться к списку новостей введите в <strong>текстовое поле</strong> знак \'#\'</i>';
 }
 ?>
+
 
 <!DOCTYPE HTML>
 <html>
@@ -55,4 +69,3 @@ if (count($_POST) == 0 || strlen($_POST['id']) == 0) {
 
  </body>
 </html>
-    

@@ -1,5 +1,5 @@
 <?php
-   error_reporting(E_ERROR|E_WARNING|E_PARSE|E_NOTICE);
+   error_reporting(E_ERROR|E_WARNING|E_PARSE|E_NOTICE|E_ALL);
     ini_set('display_errors', 1);
 
 $news='Четыре новосибирские компании вошли в сотню лучших работодателей
@@ -13,25 +13,31 @@ $news='Четыре новосибирские компании вошли в с
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
 $news = explode("\n", $news);
 
-# Точка входа
-if (  isset( $_GET['id'] ) && $_GET['id'] >= 0 && $_GET['id'] <= 8 ) {
-    Specific_news ();
-}       
-elseif ( isset( $_GET['id'] ) || count( $_GET ) == 0 ) {
+if ( count( $_GET ) == 0 ) {
+    header("HTTP/1.0 404 Not Found");
+    include_once "404.html";    
+}
+if ( isset( $_GET['all'] ) ) {
     All_news ();
 }
 
-# Проверка передачи параметра id
-if ( !isset( $_GET['id'] ) && count( $_GET ) !== 0 ) {
-    echo '<h1> Ошибка 404 </h1>';
+# Точка входа
+if ( isset( $_GET['id'] ) && $_GET['id'] >= 0 && $_GET['id'] <= 8 ) {
+    Specific_news ();
+}
+elseif ( isset( $_GET['id'] ) ) {
+    All_news ();    
+}
+elseif ( !isset( $_GET['all'] ) ) {
     header("HTTP/1.0 404 Not Found");
+    include_once "404.html";    
 }
 
 # Функция вывода всего списка новостей:
 function All_news () {
     global $news;
     
-    echo '<h4>Список новостей (для выбора новости введите в адресную строку параметр news_number=0...8):</h4>';
+    echo '<h4>Список новостей (для выбора новости введите в адресную строку параметр id=0...8):</h4>';
         foreach ( $news as $key => $value ) {
             echo ''.$key.'. '.$value.'';
             echo '<br>';
@@ -45,5 +51,6 @@ function Specific_news () {
     echo ''.$_GET['id' ].'. ';
     echo $news [ $_GET['id' ] ];
     echo '<br>';
-    echo ' &nbsp  &nbsp <i>Для перехода к списку новостей введите в адресную строку \'xaver.loc\'</i>';
+    echo '<br>';
+    echo ' &nbsp  &nbsp <i>Для вывода списка новостей введите параметр \'all\' в адресную строку.</i>';
 }

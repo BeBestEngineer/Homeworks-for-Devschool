@@ -23,7 +23,9 @@ if ( isset( $_GET['all'] ) ) {
 }
 
 # Точка входа
-if ( isset( $_GET['id'] ) && $_GET['id'] >= 0 && $_GET['id'] <= ( count( $news ) - 1 ) && $_GET['id'] !== '' ) {
+if ( isset( $_GET['id'] ) && $_GET['id'] >= 0 && $_GET['id'] <= ( count( $news ) - 1 ) && $_GET['id'] !== '' 
+        && preg_match('@[ 0-9 ]@u', $_GET['id']) 
+        && $_GET['id'] !== ' ' ) {
     Specific_news ();
 }
 elseif ( isset( $_GET['id'] ) ) {

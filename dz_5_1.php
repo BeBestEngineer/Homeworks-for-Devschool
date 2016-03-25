@@ -17,12 +17,13 @@ if ( count( $_GET ) == 0 ) {
     header("HTTP/1.0 404 Not Found");
     include_once "404.html";    
 }
+
 if ( isset( $_GET['all'] ) ) {
     All_news ();
 }
 
 # Точка входа
-if ( isset( $_GET['id'] ) && $_GET['id'] >= 0 && $_GET['id'] <= 8 ) {
+if ( isset( $_GET['id'] ) && $_GET['id'] >= 0 && $_GET['id'] <= ( count( $news ) - 1 ) && $_GET['id'] !== '' ) {
     Specific_news ();
 }
 elseif ( isset( $_GET['id'] ) ) {

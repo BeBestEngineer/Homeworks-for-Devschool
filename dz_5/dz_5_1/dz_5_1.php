@@ -29,7 +29,7 @@ if ( isset( $_GET['all'] ) ) {
 # Функция проверки значения параметра id:
 function Check_id ( $news ) {
 if ( $_GET['id'] >= 0 && $_GET['id'] <= ( count( $news ) - 1 ) && !preg_match('@[ \D ]@u', $_GET['id']) && $_GET['id'] !=='' ) {
-    Specific_news ( $news );
+    Specific_news ( $news, $_GET['id'] );
 } else {
     All_news ( $news );
   }
@@ -45,9 +45,9 @@ function All_news ( $news ) {
 }
 
 # Функция вывода конкретной новости:
-function Specific_news ( $news ) {
-    echo ''.$_GET['id'].'. ';
-    echo $news [ (int)$_GET['id'] ];
+function Specific_news ( $n, $gid ) {
+    echo ''.$gid.'. ';
+    echo $n [ (int)$gid ];
     echo '<br>';
     echo '<br>';
     echo ' &nbsp  &nbsp <i>Для вывода списка новостей введите параметр \'all\' в адресную строку.</i>';

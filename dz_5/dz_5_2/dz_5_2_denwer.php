@@ -15,39 +15,47 @@ $news='Четыре новосибирские компании вошли в с
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
 $news = explode("\n", $news);
 
+array_unshift( $news, "apple" );
+unset( $news[ 0 ] );
+
 # Точка входа
 if ( isset( $_POST['id'] ) ) {
-    Check_id ( $news );    
-} else {
+    $safe_id = (int) $_POST['id'];
+        Check_id ( $news, $safe_id );    
+} elseif ( !isset( $_POST['all'] ) ) {
     header("HTTP/1.0 404 Not Found");
     include_once "404.html";    
 }
 
-# Функция проверки значения параметра id:
-function Check_id ( $n ) {
-if ( $_POST['id'] >= 0 && $_POST['id'] <= ( count( $n ) - 1 ) && !preg_match('@[ \D ]@u', $_POST['id']) && $_POST['id'] !=='' ) {
-    Specific_news ( $n, $_POST['id'] );
+if ( isset( $_POST['all'] ) ) {    
+    All_news ( $news );
+}
+
+# Функция проверки значения переменной safe_id:
+function Check_id ( $n, $si ) {
+if ( $si >= 1 && $si <= ( count( $n ) - 1 ) ) {
+    Specific_news ( $n, $si );
 } else {
     All_news ( $n );
   }
 }
 
 # Функция вывода всего списка новостей:
-function All_news ( $n ) {
-    echo '<h4>Список новостей (для выбора новости введите в текстовое поле цифру от 0 до 8:</h4>';
-        foreach ( $n as $key => $value ) {
+function All_news ( $news ) {
+    echo '<h4>Список новостей (для выбора новости введите в адресную строку параметр id = 1...9):</h4>';
+        foreach ( $news as $key => $value ) {
             echo ''.$key.'. '.$value.'';
             echo '<br>';
     }
 }
 
 # Функция вывода конкретной новости:
-function Specific_news ( $n, $pid ) {
-    echo ''.$pid.'. ';
-    echo $n [ (int)$pid ];
+function Specific_news ( $n2, $si2 ) {
+    echo ''.$si2.'. ';
+    echo $n2 [ $si2 ];
     echo '<br>';
     echo '<br>';
-    echo ' &nbsp  &nbsp <i>Для вывода списка новостей введите параметр \'all\' в текстовое поле.</i>';
+    echo ' &nbsp  &nbsp <i>Для вывода списка новостей введите параметр \'all\' в адресную строку.</i>';
 }
 ?>
 
@@ -59,7 +67,7 @@ function Specific_news ( $n, $pid ) {
  </head>
  <body>
 
- <form action="dz_5_2.php", method ="POST">
+ <form action="dz_5_2_denwer.php", method ="POST">
   <p><b>Текстовое поле</b></p>
   <p>
   <input type="text" name="id" value="">

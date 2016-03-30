@@ -14,30 +14,34 @@ $news='Четыре новосибирские компании вошли в с
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
 $news = explode("\n", $news);
 
+array_unshift( $news, "apple" );
+unset( $news[ 0 ] );
+
 # Точка входа
-if ( isset( $_GET['id']  ) ) {
-    Check_id ( $news );    
+if ( isset( $_GET['id'] ) ) {
+    $safe_id = (int) $_GET['id'];
+        Check_id ( $news, $safe_id );    
 } elseif ( !isset( $_GET['all'] ) ) {
     header("HTTP/1.0 404 Not Found");
     include_once "404.html";    
 }
 
-if ( isset( $_GET['all'] ) ) {
+if ( isset( $_GET['all'] ) ) {    
     All_news ( $news );
 }
 
-# Функция проверки значения параметра id:
-function Check_id ( $news ) {
-if ( $_GET['id'] >= 0 && $_GET['id'] <= ( count( $news ) - 1 ) && !preg_match('@[ \D ]@u', $_GET['id']) && $_GET['id'] !=='' ) {
-    Specific_news ( $news, $_GET['id'] );
+# Функция проверки значения переменной safe_id:
+function Check_id ( $n, $si ) {
+if ( $si >= 1 && $si <= ( count( $n ) - 1 ) ) {
+    Specific_news ( $n, $si );
 } else {
-    All_news ( $news );
+    All_news ( $n );
   }
 }
 
 # Функция вывода всего списка новостей:
 function All_news ( $news ) {
-    echo '<h4>Список новостей (для выбора новости введите в адресную строку параметр id=0...8):</h4>';
+    echo '<h4>Список новостей (для выбора новости введите в адресную строку параметр id = 1...9):</h4>';
         foreach ( $news as $key => $value ) {
             echo ''.$key.'. '.$value.'';
             echo '<br>';
@@ -45,9 +49,9 @@ function All_news ( $news ) {
 }
 
 # Функция вывода конкретной новости:
-function Specific_news ( $n, $gid ) {
-    echo ''.$gid.'. ';
-    echo $n [ (int)$gid ];
+function Specific_news ( $n2, $si2 ) {
+    echo ''.$si2.'. ';
+    echo $n2 [ $si2 ];
     echo '<br>';
     echo '<br>';
     echo ' &nbsp  &nbsp <i>Для вывода списка новостей введите параметр \'all\' в адресную строку.</i>';

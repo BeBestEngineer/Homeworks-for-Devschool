@@ -45,15 +45,4 @@
             </tr>
         </table>
         </form>
-
-    <?php /* ?>
-    <br>
-    <hr>
-    <p> -- Car's Session -- </p>
-    <?php print_r ( $_SESSION['a'] ); ?>    
-    <hr>
-    <p> -- POST -- </p>
-    <?php print_r ( $_POST ); ?>
-    <hr>
-    <p> -- GET -- </p>
-    <?php print_r ( $_GET ); */ ?>
+    

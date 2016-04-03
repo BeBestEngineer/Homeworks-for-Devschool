@@ -1,5 +1,6 @@
 <?php
 
+# Функция вывода добавленных объявлений
 function Ads_Database() {    
     foreach ( $_SESSION['a'] as $key => $value ) { 
                 $key_a = $key;
@@ -13,11 +14,13 @@ function Ads_Database() {
     }
 }
 
+# Функция удаления объявления
 function Del_Ad() {
     $key_a = $_GET ['del_ad'];            
     unset ( $_SESSION['a']["$key_a"] );   
 } 
 
+# Функция очистки сессии от пустых массивов
 function Cleaning_session () {
     foreach ( $_SESSION['a'] as $kcl => $vcl ) {
         $key_cl = $kcl;
@@ -28,6 +31,7 @@ function Cleaning_session () {
     }
 }
 
+# Функция вывода информации из объявления на экран
 function Ss () {
     $ab_ad = array ();
     if ( isset( $_GET ['ad_key'] ) ) {
@@ -38,6 +42,19 @@ function Ss () {
 return $ab_ad;  
 }
 
+# Функция редактирования объявления (Часть 1/2)
+function Edit_ad () {
+    $from_ad = $_SESSION['a'][ $_GET ['edit_ad'] ];    
+    return $from_ad;
+}
+
+# Функция редактирования объявления (Часть 2/2)
+function Put_corrected_ad () {
+    $temp_ad = array_pop( $_SESSION['a'] );
+    $_SESSION['a'][ $_GET ['edit_ad']] = $temp_ad;
+}
+
+# Динамический селектор города
 function City_select () {
     $cities = array(
         '64400' => 'Omsk',
@@ -53,6 +70,7 @@ function City_select () {
         return $op_city;        
 }
 
+# Динамический коллектор категории
 function Category_select () {
     $categories = array(
         'el' => 'Electronics',

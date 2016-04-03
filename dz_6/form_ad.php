@@ -4,7 +4,7 @@
     <i>&nbsp &nbsp For show ad, press 'Ad Title' hyperlink.</i> <br>
 
     <h2> Adding ad </h2>   
-        <form action = "dz_6_denwer.php" method = "POST">
+    <form method = "POST">
         <table> 
             <tr>
                 <td> Name </td> <td> <input type="text" name ="n" value = 'Alex' /> </td>
@@ -35,7 +35,7 @@
                 <td> Title </td> <td> <input type="text" name ="t" value = 'Lumia 640 XL' /> </td>
             </tr>
             <tr>    
-                <td> Description </td> <td> <textarea rows="10" cols="45" name ="d" > </textarea> </td>
+                <td> Description </td> <td> <textarea rows="10" cols="45" name ="d" ></textarea> </td>
             </tr>
             <tr>    
                 <td> Price </td> <td> <input type="text" name ="p" value = '100$' /> </td>
@@ -45,4 +45,3 @@
             </tr>
         </table>
         </form>
-    

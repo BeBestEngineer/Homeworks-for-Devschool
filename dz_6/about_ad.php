@@ -24,4 +24,10 @@
             <tr>
                 <td> Price </td> <td> <?php echo $a_a['p']; ?> </td>
             </tr>
+            <tr>
+                <td>  </td> <td> <a href = "?edit_ad=<?php echo $_GET ['ad_key']; ?>"> Edit ad </a> </td>
+            </tr>
         </table>
+
+    
+    

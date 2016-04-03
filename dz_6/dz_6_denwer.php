@@ -9,15 +9,27 @@ $_SESSION['a'][] = $_POST;
 # Подключение файла с функциями
 include_once 'dz_6_function_denwer.php';
 
-# Подключение файла с формой добавления объявления 
-include_once 'form_adding_ad.php';
-
 # Очистка сессии от пустых массивов
 Cleaning_session();
+
+# Добавление объявления 
+if ( !isset( $_GET ['edit_ad'] ) ) {
+    include_once 'form_ad.php';
+}
 
 # Удаление объявления
 if ( isset( $_GET ['del_ad'] ) ) {
     Del_Ad ();    
+}
+
+# Редактирование объявления 
+if ( isset( $_GET ['edit_ad'] ) ) {
+    Edit_Ad ();
+    $from_ad = Edit_Ad ();
+    include_once 'form_edit_ad.php';
+    if (count($_POST) !== 0) {
+        Put_corrected_ad ();
+    }    
 }
 
 # Вывод на экран добавленных объявлений

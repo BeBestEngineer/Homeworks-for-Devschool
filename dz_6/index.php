@@ -8,26 +8,23 @@ require_once 'ads_function.php';
 
 session_start();
 
-if ( count( $_POST ) !==0 ) {
+# Добавление объявления
+if ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Add!' ) {
     $_SESSION['a'][] = $_POST;
 }
 
-# Подключение файла с формой
-require_once 'ads_form.php';
+# Редактирование объявления
+if ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Edit!' ) {
+    $_SESSION['a'][] = $_POST;
+    Edit_Ad ();    
+}
 
 # Удаление объявления
 if ( intval( isset( $_GET ['del_ad'] ))) {
     Del_Ad ();
 }
 
-# Редактирование объявления
-if ( intval( isset( $_GET ['edit_ad'] ))) {
-    Edit_Ad ();    
-}
-
-# Вывод списка объявлений
-if ( isset( $_SESSION['a'] ) && count( $_SESSION['a'] ) !== 0 ) {
-    require_once 'ads_database.php';
-}
+# Подключение файла с формой
+require_once 'ads_form.php';
 
 ?>

@@ -46,7 +46,18 @@
                 <td> <input type="text" name ="p" value = <?php echo ( intval( isset( $_GET[ 'ad_show' ] )) ? ''.$_SESSION['a'][ intval( $_GET[ 'ad_key' ]) ]['p'].'' : 'Price' ); ?> > </td>
             </tr>
             <tr>
-                <td> <input type="submit" value = <?php echo ( intval( isset( $_GET[ 'ad_show' ] )) ? 'Edit!' : 'Add!' ); ?> > </td> <td>  </td>
+                <td> <input type="submit" name="Button_pressed" value = <?php echo ( intval( isset( $_GET[ 'ad_show' ] )) ? 'Edit!' : 'Add!' ); ?> > </td> <td>  </td>
             </tr>
         </table>
         </form>
+
+
+<?php if ( isset( $_SESSION['a'] ) && count( $_SESSION['a'] ) !== 0 ): ?>
+    
+    <h2> Adding Ad </h2>        
+        <table> 
+            <td> Ad Title &nbsp </td> <td> Price &nbsp </td> <td> Seller's name &nbsp &nbsp </td>
+                <?php Ads_Database(); ?>
+        </table>
+    
+<?php endif; ?>

@@ -2,28 +2,16 @@
 
 #Функция добавления объявления
 function Adding_Ad() {
-    
     if ( isset( $_COOKIE['ads'] ) ) {
     $from_cookie = unserialize( $_COOKIE['ads'] );
-} else {
-    $from_cookie = array();
-}
-
-if ( isset( $_POST ) ) { 
-    $from_post = $_POST;
-} else {
-    $from_post = array ();
-}
-     
-    array_push( $from_cookie, $from_post );
-        
-    $time = time() + 60*60*24*7;
-        
-    $from_cookie = serialize( $from_cookie );
-
-    setcookie( 'ads', $from_cookie, $time );
-
-    header("Location: http://dz_7_1.loc/index7_1.php");
+    } else {
+        $from_cookie = array();
+    }
+        array_push( $from_cookie, $_POST );
+            $time = time() + 60*60*24*7;                    //Время существования cookie в браузере
+        $from_cookie = serialize( $from_cookie );
+        setcookie( 'ads', $from_cookie, $time );
+        header("Location: http://dz_7_1.loc/index7_1.php");
     exit;
         
 }
@@ -33,47 +21,32 @@ function Del_Ad() {
     $uns_COOKIE = unserialize( $_COOKIE['ads'] );
     unset ( $uns_COOKIE[ intval( $_GET['del_ad'] ) ] );
     $from_cookie = serialize( $uns_COOKIE );
-        
-    $time = time() + 60*60*24*7;
+        $time = time() + 60*60*24*7;                        //Время существования cookie в браузере
     setcookie( 'ads', $from_cookie, $time );
-
     header("Location: http://dz_7_1.loc/index7_1.php");
     exit;    
 }
 
 # Функция удаления всех объявлений
 function Del_Ad_All () {
-
-    $time = time() - 60*60*24*7;
-        
-    $from_cookie = serialize( $_COOKIE['ads'] );
-    
-    setcookie( 'ads', $from_cookie, $time );
-
+    setcookie( 'ads', '', time() -10 );
     header("Location: http://dz_7_1.loc/index7_1.php");
     exit;
 }
 
 # Функция редактирования объявления
 function Edit_Ad () {
-    
-    $uns_COOKIE = unserialize( $_COOKIE['ads'] );           //  array[ [0]=>'Данные объявления', [1]=>'Данные объявления' ]
-    # есть массив POST с данными редактируемого объявления
-    # есть номер редактируемого объявления GET['edit_ad'] = 0;
-    # есть массив $_COOKIE['ads'] в котором нужно сделать заемну и заново записать весь массив в cookie браузера;
-    $uns_COOKIE[ $_GET['edit_ad'] ] = $_POST;
+    $uns_COOKIE = unserialize( $_COOKIE['ads'] );          
+    $uns_COOKIE[ intval( $_GET['edit_ad']) ] = $_POST;
     $from_cookie = serialize( $uns_COOKIE );
-        
-    $time = time() + 60*60*24*7;
+        $time = time() + 60*60*24*7;                        //Время существования cookie в браузере
     setcookie( 'ads', $from_cookie, $time );
-
     header("Location: http://dz_7_1.loc/index7_1.php");
     exit;    
 }
 
 # Функция вывода добавленных объявлений
 function Ads_Database() {    
-    
     foreach ( unserialize( $_COOKIE['ads'] ) as $key => $value ) {     
                 $key_a = $key;
                 $value_a = $value;

@@ -9,20 +9,19 @@ require_once 'ads_function_7_1.php';
 # Добавление объявления
 if ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Add!' ) {
     Adding_Ad();
-}   
 
-# Редактирование объявления
-if ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Edit!' ) {
+# Редактирование объявления    
+} else if ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Edit!' ) {   
     Edit_Ad ();
-}
+}    
 
 # Удаление объявления
-if ( intval( isset( $_GET ['del_ad'] ))) {
+if ( isset( $_GET ['del_ad'] )) {
     Del_Ad ();
 }
 
 # Удаление всех объявлений
-if ( isset( $_POST['Button_del_cookie'] ) && $_POST['Button_del_cookie'] == 'Del Cookie!' ) {
+if ( isset( $_POST['Button_del_cookie'] )) {
     Del_Ad_All ();        
 }
 

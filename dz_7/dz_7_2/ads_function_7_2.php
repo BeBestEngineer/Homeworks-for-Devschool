@@ -27,7 +27,7 @@ function Edit_Ad () {
     $adb = 'Ads_data_base_7_2.php';
     
     $array_from_file = file( 'Ads_data_base_7_2.php' );
-    $array_from_file[ intval( $_GET[ 'edit_ad' ]) ] = serialize( $_POST );
+    $array_from_file[ intval( $_GET[ 'edit_ad' ]) ] = serialize( $_POST ) . "\n";
         #print_r ( $array_from_file );
     
     file_put_contents( $adb, '' );

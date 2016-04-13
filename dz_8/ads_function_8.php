@@ -19,9 +19,8 @@ function Edit_Ad ( $adb, $array_from_file ) {
 }
 
 # Функция вывода данных для редактирования объявления
-function Show_ad_for_edit ( $adb ) {
-    $afffed = unserialize( file_get_contents ( $adb ));
-    $edit_value =  $afffed[ intval( $_GET[ 'ad_key' ]) ];
+function Show_ad_for_edit ( $adb, $array_from_file ) {
+    $edit_value =  $array_from_file[ intval( $_GET[ 'ad_key' ]) ];
 return $edit_value;
 }
 

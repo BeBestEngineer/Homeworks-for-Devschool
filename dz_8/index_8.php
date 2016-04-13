@@ -25,11 +25,11 @@ $smarty->display('index.tpl');
 
 
 
-# Аргументы для функций
-$adb = 'Ads_data_base_8.php';
-
 # Подключение файла с функциями
 require_once 'ads_function_8.php';
+
+# Аргументы для функций
+$adb = 'Ads_data_base_8.php';
 
 # Проверка состояния файла 
 if ( file_exists( $adb ) ){
@@ -53,7 +53,7 @@ if ( isset( $_GET ['del_ad'] )) {
 }
 
 # Вывод данных объявления для редактирования
-isset( $_GET[ 'ad_show' ] ) ? $safe = Show_ad_for_edit ( $adb ) : '';
+isset( $_GET[ 'ad_show' ] ) ? $safe = Show_ad_for_edit ( $adb, $array_from_file ) : '';
 
 # Подключение файла с формой
 require_once 'ads_form_8.php';

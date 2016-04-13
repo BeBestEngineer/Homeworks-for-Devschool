@@ -27,22 +27,29 @@ $smarty->display('index.tpl');
 
 # Аргументы для функций
 $adb = 'Ads_data_base_8.php';
+$array_from_file = unserialize( file_get_contents ( $adb ));
 
 # Подключение файла с функциями
 require_once 'ads_function_8.php';
 
+# Проверка состояния файла 
+if ( strlen( file_get_contents ( $adb )) < 10 ) {
+    #if ( filesize( $adb ) < 10 ) {
+        $array_from_file = array();
+}
+
 # Добавление объявления
 if ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Add!' ) {
-    Adding_Ad( $adb );
+    Adding_Ad( $adb, $array_from_file );
 
 # Редактирование объявления    
 } elseif ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Edit!' ) {   
-    Edit_Ad ( $adb );
+    Edit_Ad ( $adb, $array_from_file );
 }    
 
 # Удаление объявления
 if ( isset( $_GET ['del_ad'] )) {
-    Del_Ad ( $adb );
+    Del_Ad ( $adb, $array_from_file );
 }
 
 # Вывод данных объявления для редактирования

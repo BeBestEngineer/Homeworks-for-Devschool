@@ -52,7 +52,8 @@
         </form>
 
 
-<?php if ( filesize( $adb ) > 10 ): ?>
+<?php #if ( filesize( $adb ) > 10 ): ?>
+<?php if ( strlen( file_get_contents ( $adb )) > 10 ): ?>
     
     <h2> Ads Database </h2>        
         <table> 

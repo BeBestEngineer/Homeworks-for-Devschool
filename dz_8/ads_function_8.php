@@ -1,22 +1,19 @@
 <?php
 
 #Функция добавления объявления
-function Adding_Ad( $adb ) {
-    $array_from_file = unserialize( file_get_contents ( $adb ));
+function Adding_Ad( $adb, $array_from_file ) {
         array_push( $array_from_file, $_POST );
     file_put_contents( $adb, serialize( $array_from_file ));
 }
 
 # Функция удаления объявления
-function Del_Ad( $adb ) {
-    $array_from_file = unserialize( file_get_contents ( $adb ));
+function Del_Ad( $adb, $array_from_file ) {
         unset( $array_from_file[ intval( $_GET[ 'del_ad' ]) ] );
     file_put_contents( $adb, serialize( $array_from_file ));
 }
 
 # Функция редактирования объявления
-function Edit_Ad ( $adb ) {
-    $array_from_file = unserialize( file_get_contents ( $adb ));
+function Edit_Ad ( $adb, $array_from_file ) {
         $array_from_file[ intval( $_GET[ 'edit_ad' ]) ] = $_POST;
     file_put_contents( $adb, serialize( $array_from_file ));
 }
@@ -38,6 +35,14 @@ function Ads_Database( $adb ) {
                 .'<td> <a href = "?del_ad='.$key_a.'"> Remove ad </a> </td>'
             .'</tr>';        
     }
+}
+
+# Функция записи в файл
+function Wr_to_file( $adb, $array_from_file ) {
+    file_put_contents( $adb, '' ); 
+        foreach ( $array_from_file as $value ) {
+            file_put_contents( $adb, $value, FILE_APPEND );
+        }
 }
 
 # Селектор города

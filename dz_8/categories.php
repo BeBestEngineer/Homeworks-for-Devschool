@@ -1,34 +1,31 @@
 <?php
 
-$Electronics = 'Computers
-Smartphones
-Photo
-Audio&Video';
-$Electronics = explode("\n", $Electronics);
+$categories_array ='
+[Computers]
+sm = Smartphones
+ph = Photo
+av = Audio/Video
+ws = Workstation
 
-$Realty = 'Houses
-Appartments
-Rooms
-Hostels';
-$Realty = explode("\n", $Realty);
+[Houses]
+ap = Appartments
+ro = Rooms
+hos = Hostels
+ho = Houses
 
-$Transport = 'SportCars
-Fourback
-Bykes
-Other';
-$Transport = explode("\n", $Transport);
+[Transport]
+fo = Fourback
+fb = Fullback
+by = Bykes
+ot = Other
 
-$Other = 'For House
-For work
-For auto
-For Health';
-$Other = explode("\n", $Other);
+[Other things]
+fw = For work
+fa = For transport
+fh = For health
+fd = For dislocation
+';
 
-$categories = array(
-    'Electronics' => $Electronics,
-    'Realty' => $Realty,
-    'Transport' => $Transport,
-    'Other' => $Other
-                	);
+$categories = parse_ini_string( $categories_array, true, INI_SCANNER_NORMAL );
 
 ?>

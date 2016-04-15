@@ -20,9 +20,6 @@ $smarty->cache_dir =    $smarty_dir . 'cache';
 $smarty->config_dir =   $smarty_dir . 'configs';
 
 
-# Подключение файла с функциями
-require_once 'ads_function_8.php';
-
 # Аргументы для функций
 $adb = 'Ads_data_base_8.php';
 
@@ -32,6 +29,9 @@ if ( file_exists( $adb ) ){
 } else {
     $array_from_file = array();
 }
+
+# Подключение файла с функциями
+require_once 'ads_function_8.php';
 
 # Добавление объявления
 if ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Add!' ) {
@@ -47,70 +47,42 @@ if ( isset( $_GET ['del_ad'] )) {
     Del_Ad ( $adb, $array_from_file );
 }
 
-# Вывод данных объявления для редактирования
-isset( $_GET[ 'ad_show' ] ) ? $safe = Show_ad_for_edit ( $adb, $array_from_file ) : '';
-
-
-
-
 # Управление выводом в шаблоне
     # Подключение файла с БД городов
     require_once 'cities.php';
     # Подключение файла с БД категорий
     require_once 'categories.php'; 
 
-# Заголовок формы
-isset( $_GET[ 'ad_show' ] ) ? $fh = 'Edit'.' ad' : $fh = 'Adding'.' ad'; 
-    $smarty->assign('form_header', $fh );
-    
-# Адрес программы которая обрабатывает данные формы
-isset( $_GET[ 'ad_show' ] ) ? $aa = $_SERVER[ 'SCRIPT_NAME' ].'?edit_ad='.intval( $_GET[ 'ad_key' ] ) : $aa = $_SERVER[ 'SCRIPT_NAME' ];
-    $smarty->assign('action_adress', $aa );
-    
-# Элементы формы
-# Имя продавца
-isset( $_GET[ 'ad_show' ] ) ? $nos = $safe['n'] : $nos = 'Name';
-    $smarty->assign('name_of_seller', $nos );
+if ( isset( $_GET[ 'ad_show' ]) ) {
+    $fh = 'Edit'.' ad';
+    $aa = $_SERVER[ 'SCRIPT_NAME' ].'?edit_ad='.intval( $_GET[ 'ad_key' ] );
+    $safe = Show_ad_for_edit ( $adb, $array_from_file );
+        $cs = $safe[ 'city_id' ];
+        $cats = $safe[ 'cat_id' ];        
+    $nob = 'Edit!';
+} else {
+    $fh = 'Adding'.' ad';
+    $aa = $_SERVER[ 'SCRIPT_NAME' ];
+    $safe = Show_ad_for_add ();
+        $cs = '';
+        $cats = '';
+    $nob = 'Add!';
+}    
 
-# Электронная почта
-isset( $_GET[ 'ad_show' ] ) ? $emos = $safe['e'] : $emos = 'E-mail';
-    $smarty->assign('email_of_seller', $emos );
-
-# Номер телефона продавца
-isset( $_GET[ 'ad_show' ] ) ? $pnos = $safe['pn'] : $pnos = 'Phone number';
-    $smarty->assign('pn_of_seller', $pnos );
-
-# Селектор города
-isset( $_GET[ 'ad_show' ] ) ? $cs = City_select ( $russland, $safe[ 'city_id' ] ) : $cs = '';    
-    $smarty->assign('array_for_city_select', $russland );
+$smarty->assign('form_header', $fh);
+$smarty->assign('action_adress', $aa);
+$smarty->assign( 'data_of_ad', $safe );
+    $smarty->assign('array_for_city_select', $russland);
     $smarty->assign( 'the_selected_city', $cs );
-
-# Селектор категории
-isset( $_GET[ 'ad_show' ] ) ? $cats = Category_select ( $categories, $safe[ 'cat_id' ] ) : $cats = '';
-    $smarty->assign('array_for_category_select', $categories );
+    $smarty->assign('array_for_category_select', $categories);
     $smarty->assign('the_selected_category', $cats );
+$smarty->assign('name_of_button', $nob);
 
-# Название объявления
-isset( $_GET[ 'ad_show' ] ) ? $toa = $safe['t'] : $toa = 'Title';
-    $smarty->assign('title_of_ad', $toa );
-    
-# Описание объявления
-isset( $_GET[ 'ad_show' ] ) ? $doa = $safe['d'] : $doa = 'Description';    
-    $smarty->assign('description_of_ad', $doa );
-    
-#Стоимость продаваемого товара
-isset( $_GET[ 'ad_show' ] ) ? $poa = $safe['p'] : $poa = 'Price';
-    $smarty->assign('price_of_ad', $poa );
-    
-# Название кнопки
-isset( $_GET[ 'ad_show' ] ) ? $nob = 'Edit!' : $nob = 'Add!';    
-    $smarty->assign('name_of_button', $nob );
-    
 
-# Вывод объявлений из файла
+# Вывод списка объявлений из файла
 $smarty->assign('ads_data_base', $adb );
 $smarty->assign('aff_to_tpl', unserialize( file_get_contents ( $adb )) );
     
 # Вывод на дисплей    
-    $smarty->display('ads_form_8.tpl');
+$smarty->display('ads_form_8.tpl');
 ?>

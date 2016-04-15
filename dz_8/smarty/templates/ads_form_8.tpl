@@ -13,22 +13,22 @@
         <table> 
             <tr>
                 <td> Name </td> 
-                <td> <input type="text" required name ="n" value = {$name_of_seller} > </td>
+                <td> <input type="text" required name ="n" value = {$data_of_ad.n} > </td>
             </tr>
             <tr>
                 <td> E-mail </td> 
-                <td> <input type="text" name ="e" value = {$email_of_seller} > </td>
+                <td> <input type="text" name ="e" value = {$data_of_ad.e} > </td>
             </tr>
             <tr>    
                 <td> Phone number &nbsp &nbsp </td> 
-                <td> <input type="text" type="hidden" name ="pn" value = {$pn_of_seller} > </td>
+                <td> <input type="text" type="hidden" name ="pn" value = {$data_of_ad.pn} > </td>
             </tr> 
             <tr>
                 <td> City </td>
                     <td>                        
                         <select name = "city_id" >
                             <option value = "" > -- Select a City -- </option>
-                                    {html_options options=$array_for_city_select selected= $the_selected_city }
+                                    {html_options options=$array_for_city_select selected=$the_selected_city}
                         </select>                        
                     </td>
             </tr> 
@@ -43,15 +43,15 @@
             </tr> 
             <tr>    
                 <td> Title </td> 
-                <td> <input type="text" required name ="t" value = {$title_of_ad} > </td>
+                <td> <input type="text" required name ="t" value = {$data_of_ad.t} > </td>
             </tr>
             <tr>    
                 <td> Description </td> 
-                <td> <textarea rows="10" cols="45" name ="d" autofocus >{$description_of_ad}</textarea> </td>
+                <td> <textarea rows="10" cols="45" name ="d" autofocus >{$data_of_ad.d}</textarea> </td>
             </tr>
             <tr>    
                 <td> Price </td> 
-                <td> <input type="text" required name ="p" value = {$price_of_ad} > </td>
+                <td> <input type="text" required name ="p" value = {$data_of_ad.p} > </td>
             </tr>
             <tr>
                 <td> <input type="submit" name="Button_pressed" value = {$name_of_button} > </td> <td>  </td>

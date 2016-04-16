@@ -24,10 +24,10 @@ $smarty->config_dir =   $smarty_dir . 'configs';
 $adb = 'Ads_data_base_8.php';
 
 # Проверка состояния файла 
-if ( file_exists( $adb ) ){
-    $array_from_file = unserialize( file_get_contents ( $adb ));
+if ( file_exists( $adb ) ) {
+    $array_from_file = unserialize( file_get_contents ( $adb ));    
 } else {
-    $array_from_file = array();
+    $array_from_file = array();    
 }
 
 # Подключение файла с функциями
@@ -56,14 +56,14 @@ if ( isset( $_GET ['del_ad'] )) {
 if ( isset( $_GET[ 'ad_show' ]) ) {
     $fh = 'Edit'.' ad';
     $aa = $_SERVER[ 'SCRIPT_NAME' ].'?edit_ad='.intval( $_GET[ 'ad_key' ] );
-    $safe = Show_ad_for_edit ( $adb, $array_from_file );
+    $safe = Show_ad ( $array_from_file );
         $cs = $safe[ 'city_id' ];
         $cats = $safe[ 'cat_id' ];        
     $nob = 'Edit!';
 } else {
     $fh = 'Adding'.' ad';
     $aa = $_SERVER[ 'SCRIPT_NAME' ];
-    $safe = Show_ad_for_add ();
+    $safe = Show_ad ();
         $cs = '';
         $cats = '';
     $nob = 'Add!';

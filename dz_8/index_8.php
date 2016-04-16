@@ -23,12 +23,12 @@ $smarty->config_dir =   $smarty_dir . 'configs';
 # Аргументы для функций
 $adb = 'Ads_data_base_8.php';
 
-# Проверка состояния файла 
-if ( file_exists( $adb ) ) {
-    $array_from_file = unserialize( file_get_contents ( $adb ));    
-} else {
-    $array_from_file = array();    
-}
+        # Проверка состояния файла 
+        if ( file_exists( $adb ) ) {
+            $array_from_file = unserialize( file_get_contents ( $adb ));    
+        } else {
+            $array_from_file = array();    
+        }
 
 # Подключение файла с функциями
 require_once 'ads_function_8.php';
@@ -47,12 +47,22 @@ if ( isset( $_GET ['del_ad'] )) {
     Del_Ad ( $adb, $array_from_file );
 }
 
+        # Проверка состояния файла - найти альтернативу
+        if ( file_exists( $adb ) ) {
+            $array_from_file = unserialize( file_get_contents ( $adb ));    
+        } else {
+            $array_from_file = array();    
+        }
+
+
 # Управление выводом в шаблоне
     # Подключение файла с БД городов
     require_once 'cities.php';
     # Подключение файла с БД категорий
     require_once 'categories.php'; 
 
+    
+    
 if ( isset( $_GET[ 'ad_show' ]) ) {
     $fh = 'Edit'.' ad';
     $aa = $_SERVER[ 'SCRIPT_NAME' ].'?edit_ad='.intval( $_GET[ 'ad_key' ] );
@@ -69,6 +79,8 @@ if ( isset( $_GET[ 'ad_show' ]) ) {
     $nob = 'Add!';
 }    
 
+$smarty->assign('input_names_of_form', array_keys( Show_ad() ));
+
 $smarty->assign('form_header', $fh);
 $smarty->assign('action_adress', $aa);
 $smarty->assign( 'data_of_ad', $safe );
@@ -81,7 +93,7 @@ $smarty->assign('name_of_button', $nob);
 
 # Вывод списка объявлений из файла
 $smarty->assign('ads_data_base', $adb );
-$smarty->assign('aff_to_tpl', unserialize( file_get_contents ( $adb )) );
+$smarty->assign('aff_to_tpl', $array_from_file );
     
 # Вывод на дисплей    
 $smarty->display('ads_form_8.tpl');

@@ -13,20 +13,20 @@
         <table> 
             <tr>
                 <td> Name </td> 
-                <td> <input type="text" required name ="n" value = {$data_of_ad.n} > </td>
+                <td> <input type="text" required name ="{$input_names_of_form.0}" value = {$data_of_ad.n} > </td>
             </tr>
             <tr>
                 <td> E-mail </td> 
-                <td> <input type="text" name ="e" value = {$data_of_ad.e} > </td>
+                <td> <input type="text" name ="{$input_names_of_form.1}" value = {$data_of_ad.e} > </td>
             </tr>
             <tr>    
                 <td> Phone number &nbsp &nbsp </td> 
-                <td> <input type="text" type="hidden" name ="pn" value = {$data_of_ad.pn} > </td>
+                <td> <input type="text" type="hidden" name ="{$input_names_of_form.2}" value = {$data_of_ad.pn} > </td>
             </tr> 
             <tr>
                 <td> City </td>
                     <td>                        
-                        <select name = "city_id" >
+                        <select name = "{$input_names_of_form.3}" >
                             <option value = "" > -- Select a City -- </option>
                                     {html_options options=$array_for_city_select selected=$the_selected_city}
                         </select>                        
@@ -35,7 +35,7 @@
             <tr>
                 <td> Category </td>
                     <td>        
-                        <select name = "cat_id" >
+                        <select name = "{$input_names_of_form.4}" >
                             <option value = "" > -- Select a Category -- </option>
                                     {html_options options=$array_for_category_select selected=$the_selected_category}
                         </select>
@@ -43,15 +43,15 @@
             </tr> 
             <tr>    
                 <td> Title </td> 
-                <td> <input type="text" required name ="t" value = {$data_of_ad.t} > </td>
+                <td> <input type="text" required name ="{$input_names_of_form.5}" value = {$data_of_ad.t} > </td>
             </tr>
             <tr>    
                 <td> Description </td> 
-                <td> <textarea rows="10" cols="45" name ="d" autofocus >{$data_of_ad.d}</textarea> </td>
+                <td> <textarea rows="10" cols="45" name ="{$input_names_of_form.6}" autofocus >{$data_of_ad.d}</textarea> </td>
             </tr>
             <tr>    
                 <td> Price </td> 
-                <td> <input type="text" required name ="p" value = {$data_of_ad.p} > </td>
+                <td> <input type="text" required name ="{$input_names_of_form.7}" value = {$data_of_ad.p} > </td>
             </tr>
             <tr>
                 <td> <input type="submit" name="Button_pressed" value = {$name_of_button} > </td> <td>  </td>

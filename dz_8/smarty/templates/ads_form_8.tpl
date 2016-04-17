@@ -5,20 +5,21 @@
         <table> 
             <tr>
                 <td> Name </td>
-                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="{$input_names_of_form.0}" value = {$data_of_ad.n} > </td>
+                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="n" value = "{$data_of_ad.n|default:'Name'}" > </td>
+                <td> <input type="hidden" name ="df" value ="df" > </td>                
             </tr>
             <tr>
                 <td> E-mail </td> 
-                <td> <input type="text" pattern="{literal}\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}{/literal}" name ="{$input_names_of_form.1}" value = {$data_of_ad.e} > </td>
+                <td> <input type="text" pattern="{literal}\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}{/literal}" name ="e" value = "{$data_of_ad.e|default:'Name@mail.com'}" > </td>
             </tr>
             <tr>    
                 <td> Phone number &nbsp &nbsp </td> 
-                <td> <input type="text" pattern="{literal}^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}${/literal}" name ="{$input_names_of_form.2}" value = {$data_of_ad.pn} > </td>
+                <td> <input type="text" pattern="{literal}^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}${/literal}" name ="pn" value = "{$data_of_ad.pn|default:'+7-xxx-xxx-xx-xx'}" > </td>
             </tr> 
             <tr>
                 <td> City </td>
                     <td>
-                        <select name = "{$input_names_of_form.3}" >
+                        <select name = "city_id" >
                             <option value = "" > -- Select a City -- </option>
                                     {html_options options=$array_for_city_select selected=$the_selected_city}
                         </select>                        
@@ -27,7 +28,7 @@
             <tr>
                 <td> Category </td>
                     <td>        
-                        <select name = "{$input_names_of_form.4}" >
+                        <select name = "cat_id" >
                             <option value = "" > -- Select a Category -- </option>
                                     {html_options options=$array_for_category_select selected=$the_selected_category}
                         </select>
@@ -35,18 +36,18 @@
             </tr> 
             <tr>    
                 <td> Title </td> 
-                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="{$input_names_of_form.5}" value = {$data_of_ad.t} > </td>
+                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="t" value = "{$data_of_ad.t|default:'Title'}" > </td>
             </tr>
             <tr>    
                 <td> Description </td> 
-                <td> <textarea rows="10" cols="45" maxlength="300" placeholder="Description" name ="{$input_names_of_form.6}">{$data_of_ad.d}</textarea> </td>
+                <td> <textarea rows="10" cols="45" maxlength="300" placeholder="Description" name ="d">{$data_of_ad.d}</textarea> </td>
             </tr>
             <tr>    
                 <td> Price </td> 
-                <td> <input type="text" required pattern ="^[ 0-9]+$" name ="{$input_names_of_form.7}" value = {$data_of_ad.p} > </td>
+                <td> <input type="text" required pattern ="^[ 0-9]+$" name ="p" value = "{$data_of_ad.p|default:'Price'}" > </td>
             </tr>
             <tr>
-                <td> <input type="submit" name="Button_pressed" value = {$name_of_button} > </td> <td>  </td>
+                <td> <input type="submit" name="Button_pressed" value = "{$name_of_button}" > </td> <td>  </td>
             </tr>
         </table>
         </form>

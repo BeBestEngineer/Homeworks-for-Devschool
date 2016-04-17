@@ -34,16 +34,7 @@ function Show_ad ( $array_from_file = '' ) {
     if ( is_array( $array_from_file ) ) {
         $ad_unive =  $array_from_file[ intval( $_GET[ 'ad_key' ]) ];
     } else {
-        $ad_unive = array (
-            'n' => 'Name',                  //0
-            'e' => 'Name@mail.com',         //1
-            'pn' => '+7-xxx-xxx-xx-xx',     //2
-            'city_id' => '',                //3
-            'cat_id' => '',                 //4
-            't' => 'Title',                 //5
-            'd' => 'Description',           //6    
-            'p' => 'Price'                  //7
-        );
+        $ad_unive = array ();
     }
     return $ad_unive;
 }

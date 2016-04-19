@@ -3,98 +3,45 @@ header('Content-type: text/html; charset=utf-8');
 error_reporting(E_ERROR|E_WARNING|E_PARSE|E_NOTICE|E_ALL);
 ini_set('display_errors', 1);
 
-# Подключение Smarty
-    // put full path to Smarty.class.php
-$project_root = $_SERVER['DOCUMENT_ROOT'];
-$smarty_dir = $project_root . '/smarty/';
-
-require( $smarty_dir . 'libs/Smarty.class.php');
-$smarty = new Smarty();
-    // Обращаемся к свойствам объекта чтобы выставить конфигурации
-$smarty->compile_check = true;  
-$smarty->debugging = false;
-
-$smarty->template_dir = $smarty_dir . 'templates';
-$smarty->compile_dir =  $smarty_dir . 'templates_c';
-$smarty->cache_dir =    $smarty_dir . 'cache';
-$smarty->config_dir =   $smarty_dir . 'configs';
-
-
-# Аргументы для функций
-$adb = 'Ads_data_base_8.php';
-
-        # Проверка состояния файла 
-        if ( file_exists( $adb ) ) {
-            $array_from_file = unserialize( file_get_contents ( $adb ));    
-        } else {
-            $array_from_file = array();    
-        }
+# Подключение шаблонизатора
+require_once 'smarty.php';
 
 # Подключение файла с функциями
 require_once 'ads_function_8.php';
 
+# Аргументы для передачи функциям
+$ads_data_base_string = 'Ads_data_base_8.php';
+
+# Массив объявлений для передачи функциям
+$array_from_file = Re_to_file( $ads_data_base_string );
+
 # Добавление объявления
 if ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Add!' ) {
-    Adding_Ad( $adb, $array_from_file );
+    Adding_Ad( $ads_data_base_string, $array_from_file );
 
 # Редактирование объявления    
 } elseif ( isset( $_POST['Button_pressed'] ) && $_POST['Button_pressed'] == 'Edit!' ) {   
-    Edit_Ad ( $adb, $array_from_file );
+    Edit_Ad ( $ads_data_base_string, $array_from_file );
 }    
 
 # Удаление объявления
 if ( isset( $_GET ['del_ad'] )) {
-    Del_Ad ( $adb, $array_from_file );
+    Del_Ad ( $ads_data_base_string, $array_from_file );
 }
 
-        # Проверка состояния файла - найти альтернативу
-        if ( file_exists( $adb ) ) {
-            $array_from_file = unserialize( file_get_contents ( $adb ));    
-        } else {
-            $array_from_file = array();    
-        }
-
-
-# Управление выводом в шаблоне
-    # Подключение файла с БД городов
-    require_once 'cities.php';
-    # Подключение файла с БД категорий
-    require_once 'categories.php'; 
-
-    
-    
-if ( isset( $_GET[ 'ad_show' ]) ) {
-    $fh = 'Edit'.' ad';
-    $aa = $_SERVER[ 'SCRIPT_NAME' ].'?edit_ad='.intval( $_GET[ 'ad_key' ] );
-    $safe = Show_ad ( $array_from_file );
-        $cs = $safe[ 'city_id' ];
-        $cats = $safe[ 'cat_id' ];        
-    $nob = 'Edit!';
+if ( isset($_GET['ad_show']) ) {
+    $form_header = 'Edit' . ' ad';
+    $action_adress = $_SERVER['SCRIPT_NAME'] . '?edit_ad=' . intval($_GET['ad_key']);
+    $data_of_ad = $array_from_file[intval($_GET['ad_key'])];
+    $name_of_button = 'Edit!';
 } else {
-    $fh = 'Adding'.' ad';
-    $aa = $_SERVER[ 'SCRIPT_NAME' ];
-    $safe = Show_ad ();
-        $cs = '';
-        $cats = '';
-    $nob = 'Add!';
-}    
+    $form_header = 'Adding' . ' ad';
+    $action_adress = $_SERVER['SCRIPT_NAME'];
+    $data_of_ad = array();     // - убрать, сделать вывод об ошибке, если объявления не существует, сделать проверку на существования массива объявления isset($array_from_file( intval( $_GET[ 'ad_key' ] ) ) ) (key в двумерном массиве объявлений)
+    $name_of_button = 'Add!';
+}
 
-$smarty->assign('input_names_of_form', array_keys( Show_ad() ));
+# Функция вывода форм на экран
+Conclusion_of_forms_on_the_screen ( $smarty, $array_from_file, $ads_data_base_string, $form_header, $action_adress, $data_of_ad, $name_of_button );
 
-$smarty->assign('form_header', $fh);
-$smarty->assign('action_adress', $aa);
-$smarty->assign( 'data_of_ad', $safe );
-    $smarty->assign('array_for_city_select', $russland);
-    $smarty->assign( 'the_selected_city', $cs );
-    $smarty->assign('array_for_category_select', $categories);
-    $smarty->assign('the_selected_category', $cats );
-$smarty->assign('name_of_button', $nob);
-
-
-# Вывод списка объявлений из файла
-$smarty->assign('ads_data_base', $adb );
-$smarty->assign('aff_to_tpl', $array_from_file );
-    
-# Вывод на дисплей    
-$smarty->display('ads_form_8.tpl');
 ?>

@@ -6,7 +6,6 @@
             <tr>
                 <td> Name </td>
                 <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="n" value = "{$data_of_ad.n|default:'Name'}" > </td>
-                <td> <input type="hidden" name ="df" value ="df" > </td>                
             </tr>
             <tr>
                 <td> E-mail </td> 
@@ -21,7 +20,7 @@
                     <td>
                         <select name = "city_id" >
                             <option value = "" > -- Select a City -- </option>
-                                    {html_options options=$array_for_city_select selected=$the_selected_city}
+                                    {html_options options=$array_for_city_select selected=$data_of_ad.city_id}
                         </select>                        
                     </td>
             </tr> 
@@ -30,7 +29,7 @@
                     <td>        
                         <select name = "cat_id" >
                             <option value = "" > -- Select a Category -- </option>
-                                    {html_options options=$array_for_category_select selected=$the_selected_category}
+                                    {html_options options=$array_for_category_select selected=$data_of_ad.cat_id}
                         </select>
                     </td>                    
             </tr> 

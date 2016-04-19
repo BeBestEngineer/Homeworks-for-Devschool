@@ -1,8 +1,7 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-14 14:40:49
+<?php /* Smarty version 2.6.25-dev, created on 2016-04-19 10:33:59
          compiled from ads_form_8.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'ads_form_8.tpl', 31, false),)), $this); ?>
-
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'ads_form_8.tpl', 8, false),array('function', 'html_options', 'ads_form_8.tpl', 23, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'header.tpl', 'smarty_include_vars' => array('title' => 'e-Shop','title_name' => 'Nice price')));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -15,26 +14,28 @@ unset($_smarty_tpl_vars);
 " method = "POST">
         <table> 
             <tr>
-                <td> Name </td> 
-                <td> <input type="text" required name ="n" value = <?php echo $this->_tpl_vars['name_of_seller']; ?>
- > </td>
+                <td> Name </td>
+                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="n" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['n'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Name') : smarty_modifier_default($_tmp, 'Name')); ?>
+" > </td>
             </tr>
             <tr>
                 <td> E-mail </td> 
-                <td> <input type="text" name ="e" value = <?php echo $this->_tpl_vars['email_of_seller']; ?>
- > </td>
+                <td> <input type="text" pattern="<?php echo '\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}'; ?>
+" name ="e" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['e'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Name@mail.com') : smarty_modifier_default($_tmp, 'Name@mail.com')); ?>
+" > </td>
             </tr>
             <tr>    
                 <td> Phone number &nbsp &nbsp </td> 
-                <td> <input type="text" type="hidden" name ="pn" value = <?php echo $this->_tpl_vars['pn_of_seller']; ?>
- > </td>
+                <td> <input type="text" pattern="<?php echo '^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$'; ?>
+" name ="pn" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['pn'])) ? $this->_run_mod_handler('default', true, $_tmp, '+7-xxx-xxx-xx-xx') : smarty_modifier_default($_tmp, '+7-xxx-xxx-xx-xx')); ?>
+" > </td>
             </tr> 
             <tr>
                 <td> City </td>
-                    <td>                        
+                    <td>
                         <select name = "city_id" >
                             <option value = "" > -- Select a City -- </option>
-                                    <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['array_for_city_select'],'selected' => $this->_tpl_vars['the_selected_city']), $this);?>
+                                    <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['array_for_city_select'],'selected' => $this->_tpl_vars['data_of_ad']['city_id']), $this);?>
 
                         </select>                        
                     </td>
@@ -44,29 +45,29 @@ unset($_smarty_tpl_vars);
                     <td>        
                         <select name = "cat_id" >
                             <option value = "" > -- Select a Category -- </option>
-                                    <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['array_for_category_select'],'selected' => $this->_tpl_vars['the_selected_category']), $this);?>
+                                    <?php echo smarty_function_html_options(array('options' => $this->_tpl_vars['array_for_category_select'],'selected' => $this->_tpl_vars['data_of_ad']['cat_id']), $this);?>
 
                         </select>
                     </td>                    
             </tr> 
             <tr>    
                 <td> Title </td> 
-                <td> <input type="text" required name ="t" value = <?php echo $this->_tpl_vars['title_of_ad']; ?>
- > </td>
+                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="t" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['t'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Title') : smarty_modifier_default($_tmp, 'Title')); ?>
+" > </td>
             </tr>
             <tr>    
                 <td> Description </td> 
-                <td> <textarea rows="10" cols="45" name ="d" autofocus ><?php echo $this->_tpl_vars['description_of_ad']; ?>
+                <td> <textarea rows="10" cols="45" maxlength="300" placeholder="Description" name ="d"><?php echo $this->_tpl_vars['data_of_ad']['d']; ?>
 </textarea> </td>
             </tr>
             <tr>    
                 <td> Price </td> 
-                <td> <input type="text" required name ="p" value = <?php echo $this->_tpl_vars['price_of_ad']; ?>
- > </td>
+                <td> <input type="text" required pattern ="^[ 0-9]+$" name ="p" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['p'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Price') : smarty_modifier_default($_tmp, 'Price')); ?>
+" > </td>
             </tr>
             <tr>
-                <td> <input type="submit" name="Button_pressed" value = <?php echo $this->_tpl_vars['name_of_button']; ?>
- > </td> <td>  </td>
+                <td> <input type="submit" name="Button_pressed" value = "<?php echo $this->_tpl_vars['name_of_button']; ?>
+" > </td> <td>  </td>
             </tr>
         </table>
         </form>

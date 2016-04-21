@@ -9,7 +9,7 @@ function Adding_Ad () {
 # Функция редактирования объявления
 function Edit_Ad () {
     mysql_query( "UPDATE `ads` SET
-                `id` = '$_GET[edit_ad]', 
+                `id` = ".intval( $_GET['edit_ad']).", 
                 `name` = '$_POST[n]',
                 `e_mail` = '$_POST[e]',
                 `phone_number` = '$_POST[pn]',
@@ -18,12 +18,12 @@ function Edit_Ad () {
                 `title` = '$_POST[t]',
                 `description` = '$_POST[d]',
                 `price` = '$_POST[p]'
-                 WHERE `id` = '$_GET[edit_ad]';" ) or die( 'Error - ' . mysql_error() );            
+                 WHERE `id` = ".intval( $_GET['edit_ad']).";" ) or die( 'Error - ' . mysql_error() );            
 }
 
 # Функция удаления объявления
 function Del_Ad () {
-    mysql_query( "DELETE FROM `ads` WHERE ((`id` = '$_GET[del_ad]'));" ) or die( 'Error - ' . mysql_error() );
+    mysql_query( "DELETE FROM `ads` WHERE ((`id` = ".intval( $_GET['del_ad'])."));" ) or die( 'Error - ' . mysql_error() );
 }
 
 # Функция чтения базы данных

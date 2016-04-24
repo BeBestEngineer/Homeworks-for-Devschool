@@ -1,15 +1,20 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-20 18:15:35
+<?php /* Smarty version 2.6.25-dev, created on 2016-04-24 13:30:54
          compiled from ads_form_9.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'ads_form_9.tpl', 8, false),array('function', 'html_options', 'ads_form_9.tpl', 23, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'ads_form_9.tpl', 14, false),array('function', 'html_options', 'ads_form_9.tpl', 29, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'header.tpl', 'smarty_include_vars' => array('title' => 'e-Shop','title_name' => 'Nice price')));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
 
-    <h2> <?php echo $this->_tpl_vars['form_header']; ?>
- </h2>   
+    <h2>
+        <?php if (( count ( $this->_tpl_vars['data_of_ad'] ) == 0 )): ?>
+            Adding ad
+        <?php else: ?>
+            Edit ad
+        <?php endif; ?>    
+    </h2>   
     <form action = "<?php echo $this->_tpl_vars['action_adress']; ?>
 " method = "POST">
         <table> 
@@ -66,14 +71,22 @@ unset($_smarty_tpl_vars);
 " > </td>
             </tr>
             <tr>
-                <td> <input type="submit" name="Button_pressed" value = "<?php echo $this->_tpl_vars['name_of_button']; ?>
-" > </td> <td>  </td>
+                <td>
+                    <?php if (( count ( $this->_tpl_vars['data_of_ad'] ) == 0 )): ?>
+                        <input type="submit" name="Button_pressed" value = "Add!" >
+                    <?php else: ?>
+                        <input type="submit" name="Button_pressed" value = "Edit!" >
+                    <?php endif; ?>
+                        <input type="hidden" name="ad_key" value = "<?php echo $this->_tpl_vars['key_of_ad']; ?>
+" > 
+                </td> 
+                <td>  </td>
             </tr>
         </table>
         </form>
 
 
-<?php if (( count ( $this->_tpl_vars['array_of_ads'] ) > 0 )): ?>            
+<?php if (( count ( $this->_tpl_vars['array_of_ads'] ) > 0 )): ?>
     <h2> Ads Database </h2>
         <table>
             <td> Ad Title &nbsp </td> <td> Price &nbsp </td> <td> Seller's name &nbsp &nbsp </td>

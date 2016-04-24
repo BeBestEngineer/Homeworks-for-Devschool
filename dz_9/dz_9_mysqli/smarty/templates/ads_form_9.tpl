@@ -1,6 +1,12 @@
 {include file='header.tpl' title = 'e-Shop' title_name = 'Nice price' }
 
-    <h2> {$form_header} </h2>   
+    <h2>
+        {if ( count( $data_of_ad ) eq 0 ) }
+            Adding ad
+        {else}
+            Edit ad
+        {/if}    
+    </h2>   
     <form action = "{$action_adress}" method = "POST">
         <table> 
             <tr>
@@ -46,13 +52,21 @@
                 <td> <input type="text" required pattern ="^[ 0-9]+$" name ="p" value = "{$data_of_ad.price|default:'Price'}" > </td>
             </tr>
             <tr>
-                <td> <input type="submit" name="Button_pressed" value = "{$name_of_button}" > </td> <td>  </td>
+                <td>
+                    {if ( count( $data_of_ad ) eq 0 ) }
+                        <input type="submit" name="Button_pressed" value = "Add!" >
+                    {else}
+                        <input type="submit" name="Button_pressed" value = "Edit!" >
+                    {/if}
+                        <input type="hidden" name="ad_key" value = "{$key_of_ad}" > 
+                </td> 
+                <td>  </td>
             </tr>
         </table>
         </form>
 
 
-{if ( count( $array_of_ads ) gt 0 ) }            
+{if ( count( $array_of_ads ) gt 0 ) }
     <h2> Ads Database </h2>
         <table>
             <td> Ad Title &nbsp </td> <td> Price &nbsp </td> <td> Seller's name &nbsp &nbsp </td>

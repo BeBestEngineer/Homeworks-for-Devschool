@@ -9,7 +9,7 @@ function Adding_Ad ( $db_of_ads ) {
 # Функция редактирования объявления
 function Edit_Ad ( $db_of_ads ) {
     mysqli_query( $db_of_ads, "UPDATE `ads` SET
-                `id` = ".intval( $_GET['edit_ad']).", 
+                `id` = '$_POST[ad_key]', 
                 `name` = '$_POST[n]',
                 `e_mail` = '$_POST[e]',
                 `phone_number` = '$_POST[pn]',
@@ -18,16 +18,16 @@ function Edit_Ad ( $db_of_ads ) {
                 `title` = '$_POST[t]',
                 `description` = '$_POST[d]',
                 `price` = '$_POST[p]'
-                 WHERE `id` = ".intval( $_GET['edit_ad']).";" ) or die( 'Error 2 - ' . mysqli_error( $db_of_ads ));            
+                 WHERE `id` = '$_POST[ad_key]';" ) or die( 'Error 2 - ' . mysqli_error( $db_of_ads ));            
 }
 
 # Функция удаления объявления
 function Del_Ad ( $db_of_ads ) {
-    mysqli_query( $db_of_ads, "DELETE FROM `ads` WHERE ((`id` = ".intval( $_GET['del_ad'])."));" ) or die( 'Error 3 - ' . mysqli_error( $db_of_ads ));
+    mysqli_query( $db_of_ads, "DELETE FROM `ads` WHERE ((`id` = ".intval( $_GET[ 'del_ad' ])."));" ) or die( 'Error 3 - ' . mysqli_error( $db_of_ads ));
 }
 
-# Функция чтения базы данных
-function Wri_Data_Base ( $db_of_ads ) {
+# Функция чтения всех объявлений из базы данных
+function Read_all_ads ( $db_of_ads ) {
     $ads_from_db = mysqli_query( $db_of_ads, 'select * from ads' ) or die( 'Error 4 - ' . mysqli_error( $db_of_ads ));
         
     if ( mysqli_num_rows( $ads_from_db ) > 0 ) {    
@@ -39,6 +39,15 @@ function Wri_Data_Base ( $db_of_ads ) {
         }        
         mysqli_free_result( $ads_from_db );
 return $array_of_ads;
+}
+
+# Функция чтения редактируемого объявления из базы данных
+function Read_edit_ad ( $db_of_ads ) {
+    $ad_from_db = mysqli_query( $db_of_ads, 'select * from ads where id ='.intval( $_GET[ 'ad_key' ])) or die( 'Error 4 - ' . mysqli_error( $db_of_ads ));
+        $data_of_ad = mysqli_fetch_assoc( $ad_from_db );
+      
+        mysqli_free_result( $ad_from_db );
+return $data_of_ad;
 }
 
 # Создание массива для селектора городов
@@ -65,23 +74,22 @@ return $array_of_categories;
 }
 
 # Функция вывода форм на экран
-function Conclusion_of_forms_on_the_screen ( $smarty, $form_header, $action_adress, $data_of_ad, $name_of_button, $db_of_ads ) {
+function Output_forms ( $smarty, $key_of_ad, $data_of_ad, $db_of_ads ) {
 
     # Данные для вывода на экран формы для добавления/редактирования объявлений
-    $smarty->assign('form_header', $form_header);
-    $smarty->assign('action_adress', $action_adress);
+    $smarty->assign('action_adress', $_SERVER[ 'SCRIPT_NAME' ] );
     $smarty->assign( 'data_of_ad', $data_of_ad );
-    $smarty->assign('name_of_button', $name_of_button);
         # Селекторы городов и категорий
         $smarty->assign('array_for_city_select', Sel_of_Cities( $db_of_ads ) );
         $smarty->assign('array_for_category_select', Sel_of_Categories( $db_of_ads ) );
-
+    
+    $smarty->assign( 'key_of_ad', $key_of_ad );        
+        
     # Данные для вывода на экран списка объявлений
-    $smarty->assign('array_of_ads', Wri_Data_Base( $db_of_ads ) );
+    $smarty->assign('array_of_ads', Read_all_ads( $db_of_ads ) );
 
     # Вывод на экран
-    $smarty->display('ads_form_9.tpl');    
+    $smarty->display('ads_form_9.tpl');
 }
 
 ?>
-

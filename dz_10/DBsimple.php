@@ -9,8 +9,6 @@ require_once $project_root."/dbsimple/DbSimple/Generic.php";
 # Подключение DBsimple к базе данных
 $db = DbSimple_Generic::connect( 'mysqli://alek:123@localhost/dz9table?charset=UTF8' );
 
-        // Как проверить удалось подключить кодирвоку или нет ???
-
 # Подключаем к базе обработчик ошибок
 $db -> setErrorHandler( 'databaseErrorHandler' );
 

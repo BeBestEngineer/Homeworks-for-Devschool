@@ -6,7 +6,7 @@
     $firePHP -> setEnabled( true );
    
 // Устанавливаем логер
-$db -> setLogger( 'myLogger' );       // 34 строка 
+$db -> setLogger( 'myLogger' );
 
 function myLogger( $db, $sql, $caller ) {
     global $firePHP;

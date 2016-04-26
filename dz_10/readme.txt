@@ -1,7 +1,7 @@
 Adminer logon
 	login: alek
 	Password: 123
-	База данных: dz9table
+	Data Base: dz9table
 
-База данных находиться в папке dump, файл - dz9table.sql
+\dump- dz9table_for_dz_10.sql
 

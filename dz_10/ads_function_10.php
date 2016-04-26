@@ -56,23 +56,13 @@ return $data_of_ad;
 
 # Создание массива для селектора городов
 function Sel_of_Cities ( $db ) {
-    $russland_from_db = $db -> select( 'SELECT * FROM russland' );
-    
-    foreach ( $russland_from_db as $value ) {
-        $array_of_cities[ $value[ 'region' ]][ $value[ 'id_city' ]] = $value[ 'city' ]; 
-    }
-  
+    $array_of_cities = $db -> selectCol( 'SELECT city, region AS ARRAY_KEY_1, id_city as ARRAY_KEY_2 FROM russland' );
 return $array_of_cities;    
 }
 
 # Создание массива для селектора категорий
-function Sel_of_Categories ( $db ) {
-    $categories_from_db = $db -> select( 'SELECT * FROM categories' );
-        
-    foreach ( $categories_from_db as $value ) {
-        $array_of_categories[ $value[ 'section_category' ]][ $value[ 'id_category' ]] = $value[ 'category' ]; 
-    }
-
+function Sel_of_Categories ( $db ) {    
+    $array_of_categories = $db -> selectCol( 'SELECT category, section_category AS ARRAY_KEY_1, id_category as ARRAY_KEY_2 FROM categories' );        
 return $array_of_categories;    
 }
 

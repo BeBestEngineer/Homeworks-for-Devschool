@@ -20,7 +20,7 @@ ini_set('display_errors', 1);
 if ( isset( $_GET[ 'ad_show' ])) {                            
     # Чтение базы данных в массив
         $data_of_ad = Read_edit_ad( $db );
-    Output_forms( $smarty, $data_of_ad[ 'id' ], $data_of_ad, $db );
+    Output_forms( $smarty, $db, $data_of_ad, $data_of_ad[ 'id' ] );
         
     # Вывод формы-шаблона для нового объявления и списка объявлений   
 } else {    
@@ -37,6 +37,6 @@ if ( isset( $_GET[ 'ad_show' ])) {
             Del_Ad( $db );
     }
 
-    Output_forms( $smarty, '', $data_of_ad = array(), $db );    
+    Output_forms( $smarty, $db );    
 }
 ?>

@@ -11,16 +11,16 @@
         <table> 
             <tr>
                 <td> Name </td>
-                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="n" value = "{$data_of_ad.name|default:'Name'}" > </td>
+                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="n" placeholder="Name" value = "{$data_of_ad.name}" > </td>
             </tr>
             <tr>
                 <td> E-mail </td> 
-                <td> <input type="text" pattern="{literal}\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}{/literal}" name ="e" value = "{$data_of_ad.e_mail|default:'Name@mail.com'}" > </td>
+                <td> <input type="text" pattern="{literal}\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,6}{/literal}" name ="e" placeholder="Name@mail.com" value = "{$data_of_ad.e_mail}" > </td>
             </tr>
             <tr>    
                 <td> Phone number &nbsp &nbsp </td> 
-                <td> <input type="text" pattern="{literal}^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}${/literal}" name ="pn" value = "{$data_of_ad.phone_number|default:'+7-xxx-xxx-xx-xx'}" > </td>
-            </tr> 
+                <td> <input type="text" pattern="{literal}^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}${/literal}" name ="pn" placeholder="+7-xxx-xxx-xx-xx" value = "{$data_of_ad.phone_number}" > </td>
+            </tr>                                                                                                                               
             <tr>
                 <td> City </td>
                     <td>
@@ -41,7 +41,7 @@
             </tr> 
             <tr>    
                 <td> Title </td> 
-                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="t" value = "{$data_of_ad.title|default:'Title'}" > </td>
+                <td> <input type="text" required pattern="^[a-zA-Z, 0-9.-]+$" name ="t" placeholder="Title" value = "{$data_of_ad.title}" > </td>
             </tr>
             <tr>    
                 <td> Description </td> 
@@ -49,7 +49,7 @@
             </tr>
             <tr>    
                 <td> Price </td> 
-                <td> <input type="text" required pattern ="^[ 0-9]+$" name ="p" value = "{$data_of_ad.price|default:'Price'}" > </td>
+                <td> <input type="text" required pattern ="^[ 0-9]+$" name ="p" placeholder="Price" value = "{$data_of_ad.price}" > </td>
             </tr>
             <tr>
                 <td>

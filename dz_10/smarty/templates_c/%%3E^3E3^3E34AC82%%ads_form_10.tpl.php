@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-04-24 14:29:10
+<?php /* Smarty version 2.6.25-dev, created on 2016-04-28 10:04:31
          compiled from ads_form_10.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'ads_form_10.tpl', 14, false),array('function', 'html_options', 'ads_form_10.tpl', 29, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'ads_form_10.tpl', 29, false),)), $this); ?>
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'header.tpl', 'smarty_include_vars' => array('title' => 'e-Shop','title_name' => 'Nice price')));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -20,21 +20,21 @@ unset($_smarty_tpl_vars);
         <table> 
             <tr>
                 <td> Name </td>
-                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="n" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['name'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Name') : smarty_modifier_default($_tmp, 'Name')); ?>
+                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="n" placeholder="Name" value = "<?php echo $this->_tpl_vars['data_of_ad']['name']; ?>
 " > </td>
             </tr>
             <tr>
                 <td> E-mail </td> 
                 <td> <input type="text" pattern="<?php echo '\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,6}'; ?>
-" name ="e" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['e_mail'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Name@mail.com') : smarty_modifier_default($_tmp, 'Name@mail.com')); ?>
+" name ="e" placeholder="Name@mail.com" value = "<?php echo $this->_tpl_vars['data_of_ad']['e_mail']; ?>
 " > </td>
             </tr>
             <tr>    
                 <td> Phone number &nbsp &nbsp </td> 
                 <td> <input type="text" pattern="<?php echo '^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$'; ?>
-" name ="pn" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['phone_number'])) ? $this->_run_mod_handler('default', true, $_tmp, '+7-xxx-xxx-xx-xx') : smarty_modifier_default($_tmp, '+7-xxx-xxx-xx-xx')); ?>
+" name ="pn" placeholder="+7-xxx-xxx-xx-xx" value = "<?php echo $this->_tpl_vars['data_of_ad']['phone_number']; ?>
 " > </td>
-            </tr> 
+            </tr>                                                                                                                               
             <tr>
                 <td> City </td>
                     <td>
@@ -57,7 +57,7 @@ unset($_smarty_tpl_vars);
             </tr> 
             <tr>    
                 <td> Title </td> 
-                <td> <input type="text" required pattern="^[a-zA-Z]+$" name ="t" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['title'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Title') : smarty_modifier_default($_tmp, 'Title')); ?>
+                <td> <input type="text" required pattern="^[a-zA-Z, 0-9.-]+$" name ="t" placeholder="Title" value = "<?php echo $this->_tpl_vars['data_of_ad']['title']; ?>
 " > </td>
             </tr>
             <tr>    
@@ -67,7 +67,7 @@ unset($_smarty_tpl_vars);
             </tr>
             <tr>    
                 <td> Price </td> 
-                <td> <input type="text" required pattern ="^[ 0-9]+$" name ="p" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['price'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Price') : smarty_modifier_default($_tmp, 'Price')); ?>
+                <td> <input type="text" required pattern ="^[ 0-9]+$" name ="p" placeholder="Price" value = "<?php echo $this->_tpl_vars['data_of_ad']['price']; ?>
 " > </td>
             </tr>
             <tr>

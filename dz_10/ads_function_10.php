@@ -67,7 +67,7 @@ return $array_of_categories;
 }
 
 # Функция вывода форм на экран
-function Output_forms ( $smarty, $key_of_ad, $data_of_ad, $db ) {
+function Output_forms ( $smarty, $db, $data_of_ad  = NULL, $key_of_ad = '' ) {
 
     # Данные для вывода на экран формы для добавления/редактирования объявлений
     $smarty->assign('action_adress', $_SERVER[ 'SCRIPT_NAME' ] );

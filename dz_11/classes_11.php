@@ -1,78 +1,48 @@
 <?php
 
-class Ad {                                                                 //Класс - конкретное объявление
-    protected $sellers_name;
-    protected $sellers_e_mail;
-    protected $sellers_phone_number;
-    protected $city_of_ad;
-    protected $category_of_ad;
-    protected $title_of_ad;
-    protected $description_of_ad;
-    protected $price_of_ad;
-    protected $key_of_ad;
+class Ads {                                                                
+    protected $id;
+    protected $name;
+    protected $e_mail;
+    protected $phone_number;
+    protected $city_id;
+    protected $category;
+    protected $title;
+    protected $description;
+    protected $price;    
     
     function __construct() {
         if ( isset( $_POST[ 'Button_pressed' ]) ) {
-            $this -> sellers_name         = $_POST[ 'n' ];
-            $this -> sellers_e_mail       = $_POST[ 'e' ];
-            $this -> sellers_phone_number = $_POST[ 'pn' ];
-            $this -> city_of_ad           = $_POST[ 'city_id' ];
-            $this -> category_of_ad       = $_POST[ 'cat_id' ];
-            $this -> title_of_ad          = $_POST[ 't' ];
-            $this -> description_of_ad    = $_POST[ 'd' ];
-            $this -> price_of_ad          = $_POST[ 'p' ];
-            $this -> key_of_ad            = $_POST[ 'ad_key' ];        
+            $this -> id           = $_POST[ 'ad_key' ];        
+            $this -> name         = $_POST[ 'n' ];
+            $this -> e_mail       = $_POST[ 'e' ];
+            $this -> phone_number = $_POST[ 'pn' ];
+            $this -> city_id      = $_POST[ 'city_id' ];
+            $this -> category     = $_POST[ 'cat_id' ];
+            $this -> title        = $_POST[ 't' ];
+            $this -> description  = $_POST[ 'd' ];
+            $this -> price        = $_POST[ 'p' ];            
         }
     }
     
-    public function Adding_Ad() {
-        $row = array (        
-            'name'         => $this -> sellers_name,
-            'e_mail'       => $this -> sellers_e_mail,
-            'phone_number' => $this -> sellers_phone_number,
-            'city_id'      => $this -> city_of_ad,
-            'category'     => $this -> category_of_ad,
-            'title'        => $this -> title_of_ad,
-            'description'  => $this -> description_of_ad,
-            'price'        => $this -> price_of_ad        
-        );
-        return $row;
-    }
-    
-    public function Edit_Ad() {
-        $row = array (
-            'id'           => $this -> key_of_ad,
-            'name'         => $this -> sellers_name,
-            'e_mail'       => $this -> sellers_e_mail,
-            'phone_number' => $this -> sellers_phone_number,
-            'city_id'      => $this -> city_of_ad,
-            'category'     => $this -> category_of_ad,
-            'title'        => $this -> title_of_ad,
-            'description'  => $this -> description_of_ad,
-            'price'        => $this -> price_of_ad        
-        );
-        return $row;        
+    public function Read_data_from_form( $db, $some_repository ) {
+        $vars = get_object_vars( $this );                                 
+        $some_repository -> Write_to_db( $db, $vars ); 
     }
 }
 
 
 class AdsRepository {
     
-    public function Write_Added( $db, $some_ad ) {
-        $row_added = $some_ad -> Adding_Ad();
-        $db -> select( "INSERT INTO ads(?#) VALUES(?a)", array_keys( $row_added ), array_values( $row_added ));        
+    public function Write_to_db( $db, $vars ) {        
+        $db -> query( "REPLACE INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars ));        
     }
 
-    public function Write_Edited( $db, $some_ad ) {
-        $row_edited = $some_ad -> Edit_Ad();
-        $db -> select( "UPDATE ads SET ?a WHERE id = ?d", $row_edited, $row_edited[ 'id' ] );        
-    }
-
-    public function Remove_Ad ( $db ) {
-        $db -> select( "DELETE FROM ads WHERE id = ?d", $_GET[ 'del_ad' ]);
+    public function Remove_from_db ( $db ) {
+        $db -> query( "DELETE FROM ads WHERE id = ?d", $_GET[ 'del_ad' ]);
     }    
     
-    public function Read_edit_ad ( $db ) {
+    public function Read_editable_ad_from_db ( $db ) {
         return $db -> selectRow( 'SELECT * FROM ads WHERE id = ?d', $_GET[ 'ad_key' ]);
     }
     
@@ -94,7 +64,7 @@ class AdsRepository {
         return $db -> selectCol( 'SELECT category, section_category AS ARRAY_KEY_1, id_category as ARRAY_KEY_2 FROM categories' );        
     }   
     
-    public function Output_forms( $smarty, $db, $data_of_ad  = NULL, $key_of_ad = '' ) {   
+    public function Output_forms_to_display( $smarty, $db, $data_of_ad  = NULL, $key_of_ad = '' ) {   
         
         # Данные для вывода на экран формы
             $smarty->assign('action_adress', $_SERVER[ 'SCRIPT_NAME' ] );

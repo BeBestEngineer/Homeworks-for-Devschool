@@ -20,26 +20,21 @@ ini_set('display_errors', 1);
     
 # Вывод формы с данными редактируемого объявления и списка объявлений
 if ( isset( $_GET[ 'ad_show' ])) {                            
-    $data_of_ad = $some_repository -> Read_edit_ad( $db );
-    $some_repository -> Output_forms( $smarty, $db, $data_of_ad, $data_of_ad[ 'id' ] );    
+    $data_of_ad = $some_repository -> Read_editable_ad_from_db( $db );
+        $some_repository -> Output_forms_to_display( $smarty, $db, $data_of_ad, $data_of_ad[ 'id' ] );    
         
 # Вывод формы-шаблона для нового объявления и списка объявлений   
 } else {    
 
     if ( isset( $_POST[ 'Button_pressed' ])) {
+        $some_ad = new Ads();
+        $some_ad -> Read_data_from_form( $db, $some_repository );
         
-        if ( $_POST[ 'Button_pressed' ] == 'Add!' ) {             # Запись нового объявления в базу данных
-            $some_repository -> Write_Added( $db, $some_ad );
-            
-        } elseif ( $_POST[ 'Button_pressed' ] == 'Edit!' ) {      # Перезапись отредактированного объявления в базе  данных
-            $some_repository -> Write_Edited( $db, $some_ad );
-        }
-        
-    } elseif ( isset( $_GET [ 'del_ad' ])) {                      # Удаление объявления из базы данных
-            $some_repository -> Remove_Ad( $db );            
+    } elseif ( isset( $_GET [ 'del_ad' ])) {                      
+        $some_repository -> Remove_from_db( $db );            
     }
     
-    $some_repository -> Output_forms( $smarty, $db );
+        $some_repository -> Output_forms_to_display( $smarty, $db );
 }
 
 ?>

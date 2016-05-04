@@ -1,0 +1,40 @@
+<?php
+header('Content-type: text/html; charset=utf-8');
+error_reporting(E_ERROR|E_WARNING|E_PARSE|E_NOTICE|E_ALL);
+ini_set('display_errors', 1);
+
+    # Подключение DBsimple
+    require_once 'DBsimple.php';
+
+    # Подключение FirePHP
+    require_once 'FirePHP.php';
+
+    # Подключение шаблонизатора
+    require_once 'smarty.php';
+
+    # Подключение файла с классами
+    require_once 'classes_12.php';
+    
+    # Подключение файла с объектами
+    require_once 'objects_12.php';                                             
+    
+    $repository = AdsRepository::instance();
+    
+    # Добавление, редактирование объявления компании или частного лица
+    if ( isset( $_POST[ 'Button_pressed' ])) {                                 
+        
+        if ( $_POST[ 'seller_type' ] == 'Company' ) {
+            $ad = new CompanyAds( $_POST );
+        }
+        elseif ( $_POST[ 'seller_type' ] == 'Individual' ) {
+            //$ad = new IndividualAds();
+        }
+    # Удаление объявления    
+    } elseif ( isset( $_GET [ 'del_ad' ])) {                                   
+        $repository -> Remove_from_db( $db );            
+    }
+    
+    $repository -> Output_forms_to_display( $smarty, $db );
+
+
+?>

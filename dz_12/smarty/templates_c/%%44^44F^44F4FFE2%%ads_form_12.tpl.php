@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-05-04 18:32:13
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-05 11:07:10
          compiled from ads_form_12.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('modifier', 'default', 'ads_form_12.tpl', 31, false),array('function', 'html_options', 'ads_form_12.tpl', 38, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'ads_form_12.tpl', 38, false),array('modifier', 'default', 'ads_form_12.tpl', 53, false),)), $this); ?>
 
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'header.tpl', 'smarty_include_vars' => array('title' => 'e-Bulletin board','title_name' => 'Nice price')));
@@ -10,7 +10,7 @@ unset($_smarty_tpl_vars);
  ?>
 
 <h2> e-Bulletin board </h2>
-    <i> Adding ad: <a href = "?seller_type=Individual"> For Individual </a> or <a href = "?seller_type=Company"> For Company </a> </i>
+    <i> Adding ad: <a href = "?seller_type=Company"> For Company </a> or <a href = "?seller_type=Individual"> For Individual </a> </i>
 
     <h3>
         <?php if (( count ( $this->_tpl_vars['data_of_ad'] ) == 0 )): ?>
@@ -25,7 +25,7 @@ unset($_smarty_tpl_vars);
                      <input type="hidden" name="id" value = "<?php echo $this->_tpl_vars['key_of_ad']; ?>
 " >
 
-<?php if ($_GET['seller_type'] == 'Individual'): ?>
+<?php if ($_GET['seller_type'] == 'Individual' || $_GET['ad_show'] == 'Individual'): ?>
     <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'ads_form_for_individual.tpl', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
@@ -48,8 +48,8 @@ unset($_smarty_tpl_vars);
             </tr>
             <tr>    
                 <td> Phone number </td> 
-                <td> <input class="wh-field" type="text" pattern="<?php echo '^((8|\\+7)[\\- ]?)?(\\(?\\d{3}\\)?[\\- ]?)?[\\d\\- ]{7,10}$'; ?>
-" name ="phone_number" placeholder="+7-xxx-xxx-xx-xx" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['phone_number'])) ? $this->_run_mod_handler('default', true, $_tmp, '+7-000-111-22-44') : smarty_modifier_default($_tmp, '+7-000-111-22-44')); ?>
+                <td> <input class="wh-field" type="text" pattern="<?php echo '^[ /+ 0-9.-]+$'; ?>
+" name ="phone_number" placeholder="+x-xxx-xxx-xx-xx" value = "<?php echo $this->_tpl_vars['data_of_ad']['phone_number']; ?>
 " > </td>
             </tr>                                                                                                                               
             <tr>
@@ -74,7 +74,7 @@ unset($_smarty_tpl_vars);
             </tr> 
             <tr>    
                 <td> Title </td> 
-                <td> <input class="wh-field" type="text" required pattern="^[a-zA-Z, 0-9.-]+$" name ="title" placeholder="Title" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['title'])) ? $this->_run_mod_handler('default', true, $_tmp, 'GTX 1090') : smarty_modifier_default($_tmp, 'GTX 1090')); ?>
+                <td> <input class="wh-field" type="text" required pattern="^[a-zA-Z, 0-9.-]+$" name ="title" placeholder="Title" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['title'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Title') : smarty_modifier_default($_tmp, 'Title')); ?>
 " > </td>
             </tr>
             <tr>    
@@ -114,4 +114,3 @@ $this->_smarty_include(array('smarty_include_tpl_file' => 'footer.tpl', 'smarty_
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-

@@ -15,8 +15,6 @@ ini_set('display_errors', 1);
     # Подключение файла с классами
     require_once 'classes_12.php';
     
-    # Подключение файла с объектами
-    require_once 'objects_12.php';                                             
     
     $repository = AdsRepository::instance();
     
@@ -27,7 +25,7 @@ ini_set('display_errors', 1);
             $ad = new CompanyAds( $_POST );
         }
         elseif ( $_POST[ 'seller_type' ] == 'Individual' ) {
-            //$ad = new IndividualAds();
+            $ad = new IndividualAds( $_POST );
         }
     # Удаление объявления    
     } elseif ( isset( $_GET [ 'del_ad' ])) {                                   
@@ -35,6 +33,5 @@ ini_set('display_errors', 1);
     }
     
     $repository -> Output_forms_to_display( $smarty, $db );
-
 
 ?>

@@ -1,7 +1,16 @@
 <tr>    
-    <td> <a href = "?ad_show&ad_key={$ad_object->get_Ad_key()}"> {$ad_object->get_Title()} </a> </td>   
+    <td> <a href = "?ad_show={$ad_object->get_Seller_type()}&ad_key={$ad_object->get_Ad_key()}"> {$ad_object->get_Title()} </a> </td>   
     <td> {$ad_object->get_Price()} </td>
-    <td> {$ad_object->get_Company_name()} </td>   
+    <td>
+        {if $ad_object instanceof CompanyAds }
+            {$ad_object->get_Company_name()}
+        {/if}
+    </td>
+    <td>
+        {if $ad_object instanceof IndividualAds }
+            {$ad_object->get_Seller_name()}
+        {/if}
+    </td>
     <td> <a href = "?del_ad={$ad_object->get_Ad_key()}"> Remove ad </a> </td>   
     <td> </td>   
 </tr>

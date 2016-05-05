@@ -2,7 +2,7 @@
 {include file='header.tpl' title = 'e-Bulletin board' title_name = 'Nice price' }
 
 <h2> e-Bulletin board </h2>
-    <i> Adding ad: <a href = "?seller_type=Individual"> For Individual </a> or <a href = "?seller_type=Company"> For Company </a> </i>
+    <i> Adding ad: <a href = "?seller_type=Company"> For Company </a> or <a href = "?seller_type=Individual"> For Individual </a> </i>
 
     <h3>
         {if ( count( $data_of_ad ) eq 0 ) }
@@ -15,7 +15,7 @@
         <table> 
                      <input type="hidden" name="id" value = "{$key_of_ad}" >
 
-{if $smarty.get.seller_type eq 'Individual' }
+{if $smarty.get.seller_type eq 'Individual' or $smarty.get.ad_show eq 'Individual'}
     {include file='ads_form_for_individual.tpl'}
 {else}
     {include file='ads_form_for_company.tpl'}    
@@ -28,7 +28,7 @@
             </tr>
             <tr>    
                 <td> Phone number </td> 
-                <td> <input class="wh-field" type="text" pattern="{literal}^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}${/literal}" name ="phone_number" placeholder="+7-xxx-xxx-xx-xx" value = "{$data_of_ad.phone_number|default:'+7-000-111-22-44'}" > </td>
+                <td> <input class="wh-field" type="text" pattern="{literal}^[ /+ 0-9.-]+${/literal}" name ="phone_number" placeholder="+x-xxx-xxx-xx-xx" value = "{$data_of_ad.phone_number}" > </td>
             </tr>                                                                                                                               
             <tr>
                 <td> City </td>
@@ -50,7 +50,7 @@
             </tr> 
             <tr>    
                 <td> Title </td> 
-                <td> <input class="wh-field" type="text" required pattern="^[a-zA-Z, 0-9.-]+$" name ="title" placeholder="Title" value = "{$data_of_ad.title|default:'GTX 1090'}" > </td>
+                <td> <input class="wh-field" type="text" required pattern="^[a-zA-Z, 0-9.-]+$" name ="title" placeholder="Title" value = "{$data_of_ad.title|default:'Title'}" > </td>
             </tr>
             <tr>    
                 <td> Description </td> 
@@ -79,4 +79,3 @@
 {/if}
 
 {include file='footer.tpl'}
-

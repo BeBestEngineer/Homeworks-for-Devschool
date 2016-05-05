@@ -7,6 +7,28 @@ SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
 DROP TABLE IF EXISTS `ads`;
 CREATE TABLE `ads` (
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(20) NOT NULL,
+  `company_address` varchar(20) NOT NULL,
+  `website` varchar(20) NOT NULL,
+  `seller_name` varchar(20) NOT NULL,
+  `vk_account` varchar(20) NOT NULL,
+  `e_mail` varchar(20) NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
+  `city_id` varchar(20) NOT NULL,
+  `category_id` varchar(20) NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `description` varchar(20) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `seller_type` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `ads` (`id`, `company_name`, `company_address`, `website`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`, `seller_type`) VALUES
+(116,	'',	'',	'',	'Name',	'',	'',	'',	'',	'',	'Title',	'',	'100',	'Individual');
+
+DROP TABLE IF EXISTS `ads_old`;
+CREATE TABLE `ads_old` (
   `id` smallint(5) NOT NULL AUTO_INCREMENT,
   `seller_name` varchar(20) NOT NULL,
   `vk_account` varchar(20) NOT NULL,
@@ -20,7 +42,7 @@ CREATE TABLE `ads` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-INSERT INTO `ads` (`id`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`) VALUES
+INSERT INTO `ads_old` (`id`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`) VALUES
 (161,	'',	'',	'',	'+7-000-111-22-44',	'77',	'ho',	'Novaya Riga House',	'',	'100'),
 (152,	'Darya',	'',	'dasha@spb.ola',	'+7-000-111-22-44',	'78',	'av',	'BestSound',	'',	'50 000'),
 (163,	'',	'',	'',	'+7-000-111-22-44',	'',	'',	'Mazda RX-8',	'',	'100 000'),
@@ -33,27 +55,6 @@ INSERT INTO `ads` (`id`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, 
 (124,	'AL',	'',	'',	'+7-000-111-22-44',	'78',	'ot',	'Mazda RX-7',	'',	'100'),
 (164,	'Name',	'somewhere in SP',	'',	'+7-000-111-22-44',	'',	'',	'GTX 1090',	'',	'100'),
 (165,	'ALLION',	'somewhere in SP',	'',	'+7-444-88-99',	'77',	'ws',	'GTX 1090',	'',	'100');
-
-DROP TABLE IF EXISTS `ads_company`;
-CREATE TABLE `ads_company` (
-  `id` smallint(6) NOT NULL AUTO_INCREMENT,
-  `company_name` varchar(20) NOT NULL,
-  `company_address` varchar(20) NOT NULL,
-  `website` varchar(20) NOT NULL,
-  `e_mail` varchar(20) NOT NULL,
-  `phone_number` varchar(20) NOT NULL,
-  `city_id` varchar(20) NOT NULL,
-  `category_id` varchar(20) NOT NULL,
-  `title` varchar(20) NOT NULL,
-  `description` varchar(20) NOT NULL,
-  `price` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `ads_company` (`id`, `company_name`, `company_address`, `website`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`) VALUES
-(70,	'JapanCars',	'somewhere in SP',	'',	'',	'+7-000-111-22-44',	'',	'',	'Mazda Rx-7',	'',	'100'),
-(64,	'Castorama',	'Kontinent',	'ca',	'',	'+7-000-111-22-44',	'55',	'ho',	'Cement',	'',	'100'),
-(73,	'AMD',	'Thaiwan',	'amd.tay',	'amd@post.tay',	'+7-400-200-10-10',	'78',	'ws',	'ZENS Central Process',	'Nex generation in 20',	'25 000');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -105,4 +106,4 @@ INSERT INTO `russland` (`region`, `id_city`, `city`) VALUES
 ('Far_East',	25,	'Nahodka'),
 ('Far_East',	28,	'Blagovechensk');
 
--- 2016-05-04 15:51:25
+-- 2016-05-05 07:02:22

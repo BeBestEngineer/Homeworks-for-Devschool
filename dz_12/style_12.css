@@ -22,16 +22,16 @@ td {
 }
 
 select {
-	width: 180px;
+	width: 220px;
 }
 
 textarea {
-	width: 340px;	
+	width: 540px;	
 }
 
 
 .table-hover {    
-    width: 500px;    
+    width: 720px;    
 }
 
 .button {
@@ -42,7 +42,7 @@ textarea {
 	font:14px Arial, Helvetica, sans-serif; 
 	font-weight:bold; 
 	color:#E5FFFF; 
-	background-color:#4581AE; 
+	background-color:#4581AE;
 }
 
 .wh {
@@ -51,5 +51,12 @@ textarea {
 
 
 .wh-field {
-	width: 180px;
+	width: 220px;
+}
+
+.table-header {
+	background-color:#4581AE;
+	font:14px Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	color:#E5FFFF;
 }

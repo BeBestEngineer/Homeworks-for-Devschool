@@ -24,8 +24,8 @@ class Ads {
             $this -> seller_type  = $from_ad[ 'seller_type' ];        
     }
     
-    public function Save_data_from_form() {
-        return $vars = get_object_vars( $this );
+    public function Get_All_Object_Properties() {
+        return get_object_vars( $this );
     }
     
     public function get_Ad_key() {
@@ -61,7 +61,7 @@ class CompanyAds extends Ads {
             $repository -> Write_to_db( $this );
     }
     
-    public function Save_data_from_form() {
+    public function Get_All_Object_Properties() {
         return  get_object_vars( $this );
     }
     
@@ -84,7 +84,7 @@ class IndividualAds extends Ads {
             $repository -> Write_to_db( $this );
     }
     
-    public function Read_data_from_form() {
+    public function Get_All_Object_Properties() {
         return get_object_vars( $this );
     }
     
@@ -111,7 +111,8 @@ class AdsRepository {
         $this -> ads[ $ad -> get_Ad_key() ] = $ad;
     }    
     
-    private function create_Storage( $db ) {
+    private function create_Storage() {
+        $db = Db::instance();
         $all = $db -> select( 'SELECT * FROM ads ORDER BY id ASC' );
             foreach ( $all as $value ) {            
             
@@ -136,23 +137,26 @@ class AdsRepository {
     }
     
     public function Write_to_db( Ads $ad ) {
-    global $db;        
         if ( ! ( $ad instanceof CompanyAds ) && ! ( $ad instanceof IndividualAds ) && ! ( $this instanceof AdsRepository ) ) {
             die( 'Can not use this method in class conctructor' );    
         }       
-        $vars = $ad -> Save_data_from_form();
+        $vars = $ad -> Get_All_Object_Properties();
+        $db = Db::instance();
         $db -> query( "REPLACE INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars ));        
     }
 
-    public function Remove_from_db ( $db ) {
+    public function Remove_from_db () {
+        $db = Db::instance();
         $db -> query( "DELETE FROM ads WHERE id = ?d", $_GET[ 'del_ad' ]);
     }    
     
-    private function Sel_of_Cities ( $db ) {
+    private function Sel_of_Cities () {
+        $db = Db::instance();
         return $db -> selectCol( 'SELECT city, region AS ARRAY_KEY_1, id_city as ARRAY_KEY_2 FROM russland' );
     }
 
-    private function Sel_of_Categories ( $db ) {    
+    private function Sel_of_Categories () {    
+        $db = Db::instance();
         return $db -> selectCol( 'SELECT category, section_category AS ARRAY_KEY_1, id_category as ARRAY_KEY_2 FROM categories' );        
     }   
     
@@ -160,21 +164,22 @@ class AdsRepository {
         return count( $this -> ads );
     }
     
-    public function Output_forms_to_display( $smarty, $db, $data_of_ad  = NULL, $key_of_ad = '' ) {   
+    public function Output_forms_to_display( $smarty, $data_of_ad  = NULL, $key_of_ad = '' ) {   
+            $db = Db::instance();
             $this -> create_Storage( $db );
             $this -> prepare_Objects_for_Smarty( $smarty );
             
         if ( isset( $_GET[ 'ad_show' ])) {
             $ad_object = $this -> ads[ intval( $_GET[ 'ad_key' ]) ];
-            $data_of_ad = $ad_object -> Save_data_from_form();
+            $data_of_ad = $ad_object -> Get_All_Object_Properties();
             $key_of_ad = $data_of_ad[ 'id' ] ;
         }
 
         # Данные для вывода на экран формы
             $smarty->assign('action_adress', $_SERVER[ 'SCRIPT_NAME' ]);
             $smarty->assign( 'data_of_ad', $data_of_ad );
-            $smarty->assign('array_for_city_select', $this -> Sel_of_Cities( $db ) );
-            $smarty->assign('array_for_category_select', $this -> Sel_of_Categories( $db ) );
+            $smarty->assign('array_for_city_select', $this -> Sel_of_Cities() );
+            $smarty->assign('array_for_category_select', $this -> Sel_of_Categories() );
             $smarty->assign( 'key_of_ad', $key_of_ad );
             
         # Данные для вывода на экран списка объявлений            

@@ -29,9 +29,9 @@ ini_set('display_errors', 1);
         }
     # Удаление объявления    
     } elseif ( isset( $_GET [ 'del_ad' ])) {                                   
-        $repository -> Remove_from_db( $db );            
+        $repository -> Remove_from_db();            
     }
     
-    $repository -> Output_forms_to_display( $smarty, $db );
+    $repository -> Output_forms_to_display( $smarty );
 
 ?>

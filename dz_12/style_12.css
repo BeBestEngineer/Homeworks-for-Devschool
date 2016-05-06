@@ -1,39 +1,3 @@
-
-body {
-    padding: 0 20px;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
-}
-
-
-h2 {
-    color: #4581AE;
-    text-shadow: 1px 1px 0 #8B9DAA;
-}
-
-h3 {
-    color: #4581AE;
-    text-shadow: 1px 1px 0 #8B9DAA;
-}
-
-td {
-	padding-top: 5px;
-    padding-right: 40px;
-}
-
-select {
-	width: 220px;
-}
-
-textarea {
-	width: 540px;	
-}
-
-
-.table-hover {    
-    width: 720px;    
-}
-
 .button {
 	text-decoration:none; 
 	text-align:center; 
@@ -45,18 +9,13 @@ textarea {
 	background-color:#4581AE;
 }
 
-.wh {
-	width: 500px;
-}
-
-
-.wh-field {
-	width: 220px;
-}
-
 .table-header {
 	background-color:#4581AE;
 	font:14px Arial, Helvetica, sans-serif;
 	font-weight:bold;
 	color:#E5FFFF;
+}
+
+.form-control {
+	border-radius: 0px;
 }

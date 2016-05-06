@@ -25,36 +25,13 @@ CREATE TABLE `ads` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `ads` (`id`, `company_name`, `company_address`, `website`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`, `seller_type`) VALUES
-(116,	'',	'',	'',	'Name',	'',	'',	'',	'',	'',	'Title',	'',	'100',	'Individual');
-
-DROP TABLE IF EXISTS `ads_old`;
-CREATE TABLE `ads_old` (
-  `id` smallint(5) NOT NULL AUTO_INCREMENT,
-  `seller_name` varchar(20) NOT NULL,
-  `vk_account` varchar(20) NOT NULL,
-  `e_mail` varchar(20) NOT NULL,
-  `phone_number` varchar(20) NOT NULL,
-  `city_id` varchar(20) NOT NULL,
-  `category_id` varchar(20) NOT NULL,
-  `title` varchar(20) NOT NULL,
-  `description` varchar(100) NOT NULL,
-  `price` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
-INSERT INTO `ads_old` (`id`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`) VALUES
-(161,	'',	'',	'',	'+7-000-111-22-44',	'77',	'ho',	'Novaya Riga House',	'',	'100'),
-(152,	'Darya',	'',	'dasha@spb.ola',	'+7-000-111-22-44',	'78',	'av',	'BestSound',	'',	'50 000'),
-(163,	'',	'',	'',	'+7-000-111-22-44',	'',	'',	'Mazda RX-8',	'',	'100 000'),
-(135,	'KSANDR',	'',	'',	'+7-000-111-22-44',	'',	'',	'AMG E63 2',	'',	'100'),
-(119,	'AL',	'',	'',	'+7-000-111-22-44',	'103',	'fb',	'Olds Mobile Toronado',	'',	'100 000'),
-(125,	'ALL',	'',	'',	'+7-000-111-22-44',	'78',	'ot',	'IHT 1971s',	'',	'100 000 000'),
-(110,	'KSANDR',	'',	'',	'+7-000-111-22-44',	'',	'',	'Toyota Tundra',	'',	'100'),
-(111,	'AL',	'',	'AL@mail.com',	'+7-926-458-98-69',	'78',	'ho',	'LUX APPART',	'AMMMAZZZING HOUSSSES OF SP',	'550 000 000 000'),
-(123,	'KSANDR',	'',	'',	'+7-000-111-22-44',	'',	'',	'Toyota Mark X',	'',	'100'),
-(124,	'AL',	'',	'',	'+7-000-111-22-44',	'78',	'ot',	'Mazda RX-7',	'',	'100'),
-(164,	'Name',	'somewhere in SP',	'',	'+7-000-111-22-44',	'',	'',	'GTX 1090',	'',	'100'),
-(165,	'ALLION',	'somewhere in SP',	'',	'+7-444-88-99',	'77',	'ws',	'GTX 1090',	'',	'100');
+(158,	'',	'',	'',	'Alexa',	'vk.com/3852',	'300600@gmail.coma',	'+7-400-200-10-101',	'78',	'ho',	'MEGAHOUSE2',	'LUXURY2',	'100 000 0001',	'Individual'),
+(121,	'',	'',	'',	'Name',	'378',	'al@post.ya',	'+4-100-200-88-88',	'78',	'fo',	'Mazda Rx-550',	'Electric Zombie',	'225 000',	'Individual'),
+(150,	'',	'',	'',	'Alex',	'vk.com/385',	'300600@gmail.com',	'+4-100-200-88-88',	'78',	'sm',	'Lumia 1720',	'6.4 inch QHD\r\n30 MP ',	'30 000',	'Individual'),
+(159,	'Boiler',	'CAO',	'boiler.omsk',	'',	'',	'900900@omsk.omsk',	'+7-381-250-50-50',	'55',	'fd',	'FALLOUT PACKAGE',	'FOR YOU',	'18',	'Company'),
+(125,	'Microsoft',	'',	'',	'',	'',	'',	'',	'78',	'sm',	'Lumia 1520',	'',	'12 000',	'Company'),
+(161,	'DreamWorks',	'Los-Angeles CA',	'',	'',	'',	'',	'',	'',	'',	'Title',	'',	'100',	'Company'),
+(163,	'DreamWorks',	'Los-Angeles CA',	'',	'',	'',	'',	'',	'',	'',	'Title',	'',	'100',	'Company');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -106,4 +83,4 @@ INSERT INTO `russland` (`region`, `id_city`, `city`) VALUES
 ('Far_East',	25,	'Nahodka'),
 ('Far_East',	28,	'Blagovechensk');
 
--- 2016-05-05 07:02:22
+-- 2016-05-06 15:22:16

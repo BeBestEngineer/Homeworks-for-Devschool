@@ -1,0 +1,43 @@
+.button {
+	text-decoration:none; 
+	text-align:center; 
+	padding:11px 32px; 
+	border:solid 1px #004F72;  
+	font:14px Arial, Helvetica, sans-serif; 
+	font-weight:bold; 
+	color:#E5FFFF; 
+	background-color:#4581AE;
+}
+
+.table-header {
+	background-color:#4581AE;
+	font:14px Arial, Helvetica, sans-serif;
+	font-weight:bold;
+	color:#E5FFFF;
+}
+
+.form-control {
+	border-radius: 0px;
+}
+
+
+.btn-del {
+    cursor: pointer;
+    display: inline-block;
+	
+	color: #fff;
+	background-color: #CD5C5C;
+    
+    border-radius: 0px;
+    padding: 4px 10px;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+.btn-del:hover {
+	text-decoration: none;
+	
+	color: #fff;
+	background-color: #FA8072;
+}

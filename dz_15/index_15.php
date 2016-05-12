@@ -15,9 +15,6 @@ ini_set('display_errors', 1);
     # Подключение файла с классами
     require_once 'classes_15.php';
     
-    
-    $repository = AdsRepository::instance();
-    
     # Добавление, редактирование объявления компании или частного лица
     if ( isset( $_POST[ 'Button_pressed' ])) {                                 
         
@@ -27,12 +24,9 @@ ini_set('display_errors', 1);
         elseif ( $_POST[ 'seller_type' ] == 'Individual' ) {
             $ad = new IndividualAds( $_POST );
         }
-        
-    # Удаление объявления    
-    } elseif ( isset( $_GET [ 'del_id' ])) {                                   
-        $repository -> Remove_from_db();            
-    }
+    }    
     
+    $repository = AdsRepository::instance();
     $repository -> Output_forms_to_display( $smarty );
 
 ?>

@@ -3,7 +3,7 @@ $( document ).ready( function(){
         var tr = $(this).closest('tr');
         var id = tr.children('td:last').html();  
 
-        $.get('index_15.php?action=delete&del_id='+id, function(){
+        $('#storage_for_JQ').load('control_JS.php?action=delete&del_id='+id, function(){
             tr.fadeOut('fast', function(){
                 $(this).remove();
             });

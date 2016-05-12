@@ -145,11 +145,6 @@ class AdsRepository {
         $db -> query( "REPLACE INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars ));        
     }
 
-    public function Remove_from_db () {
-        $db = Db::instance();
-        $db -> query( "DELETE FROM ads WHERE id = ?d", $_GET[ 'del_id' ]);
-    }    
-    
     private function Sel_of_Cities () {
         $db = Db::instance();
         return $db -> selectCol( 'SELECT city, region AS ARRAY_KEY_1, id_city as ARRAY_KEY_2 FROM russland' );

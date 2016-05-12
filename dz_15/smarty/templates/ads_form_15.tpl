@@ -98,5 +98,7 @@
         </div>
     </div>
 </div>
+            
+<div id="storage_for_JQ"></div>            
 
 {include file='footer.tpl'}

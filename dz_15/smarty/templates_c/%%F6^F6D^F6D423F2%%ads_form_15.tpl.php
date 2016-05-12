@@ -1,4 +1,4 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-05-12 14:49:42
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-12 20:16:02
          compiled from ads_form_15.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
 smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'ads_form_15.tpl', 47, false),array('modifier', 'default', 'ads_form_15.tpl', 63, false),)), $this); ?>
@@ -128,6 +128,8 @@ unset($_smarty_tpl_vars);
         </div>
     </div>
 </div>
+            
+<div id="storage_for_JQ"></div>            
 
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'footer.tpl', 'smarty_include_vars' => array()));

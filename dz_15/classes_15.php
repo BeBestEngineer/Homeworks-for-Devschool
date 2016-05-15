@@ -111,7 +111,7 @@ class AdsRepository {
         $this -> ads[ $ad -> get_Ad_key() ] = $ad;
     }    
     
-    private function create_Storage() {
+    public function create_Storage() {
         $db = Db::instance();
         $all = $db -> select( 'SELECT * FROM ads ORDER BY id ASC' );
             foreach ( $all as $value ) {            
@@ -145,6 +145,11 @@ class AdsRepository {
         $db -> query( "REPLACE INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars ));        
     }
 
+    public function Remove_from_db () {
+        $db = Db::instance();
+        $db -> query( "DELETE FROM ads WHERE id = ?d", $_GET[ 'del_id' ]);
+    }    
+    
     private function Sel_of_Cities () {
         $db = Db::instance();
         return $db -> selectCol( 'SELECT city, region AS ARRAY_KEY_1, id_city as ARRAY_KEY_2 FROM russland' );
@@ -158,18 +163,15 @@ class AdsRepository {
     private function get_Count_of_ads() {
         return count( $this -> ads );
     }
-    
-    public function Output_forms_to_display( $smarty, $data_of_ad  = NULL, $key_of_ad = '' ) {   
-            $db = Db::instance();
-            $this -> create_Storage( $db );
-            $this -> prepare_Objects_for_Smarty( $smarty );
-            
-        if ( isset( $_GET[ 'ad_show' ])) {
-            $ad_object = $this -> ads[ intval( $_GET[ 'ad_key' ]) ];
-            $data_of_ad = $ad_object -> Get_All_Object_Properties();
-            $key_of_ad = $data_of_ad[ 'id' ] ;
-        }
 
+    public function Get_data_of_ad_from_storage() {
+        $this -> create_Storage();
+        $ad_object = $this -> ads[ intval( $_GET[ 'ad_key' ]) ];
+        return $data_of_ad = $ad_object -> Get_All_Object_Properties();
+    }
+    
+    public function Output_forms_to_display( $smarty, $data_of_ad, $key_of_ad ) {   
+            
         # Данные для вывода на экран формы
             $smarty->assign('action_adress', $_SERVER[ 'SCRIPT_NAME' ]);
             $smarty->assign( 'data_of_ad', $data_of_ad );
@@ -178,6 +180,7 @@ class AdsRepository {
             $smarty->assign( 'key_of_ad', $key_of_ad );
             
         # Данные для вывода на экран списка объявлений            
+            $this -> prepare_Objects_for_Smarty( $smarty );
             $smarty->assign('count_of_ads', $this -> get_Count_of_ads() );
 
         # Вывод на экран

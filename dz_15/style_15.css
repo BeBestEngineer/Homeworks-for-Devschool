@@ -1,25 +1,64 @@
-.button {
+
+td {
+    vertical-align: middle !important;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.table > thead > tr > th {
+    vertical-align: middle;
+}
+
+.for-empty-table {
+    text-align: center;
+    color: #FF4500;
+}
+
+.ad {
+    
+}
+
+.table-header {
+    font:14px Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    
+    background-color:#4581AE;
+    color:#E5FFFF;
+}
+
+.table-header-action {
+    font:14px Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    
+    background-color:#4581AE;
+    color:#E5FFFF;
+    
+    text-align: center;
+}
+
+.button, .clear-button {
 	text-decoration:none; 
 	text-align:center; 
-	padding:11px 32px; 
+	padding:12px 30px; 
 	border:solid 1px #004F72;  
 	font:14px Arial, Helvetica, sans-serif; 
 	font-weight:bold; 
 	color:#E5FFFF; 
 	background-color:#4581AE;
+    float:right;
 }
 
-.table-header {
-	background-color:#4581AE;
-	font:14px Arial, Helvetica, sans-serif;
-	font-weight:bold;
-	color:#E5FFFF;
-}
+.button:hover, .clear-button:hover {
+    cursor: pointer;
+    display: inline-block;
 
-.form-control {
-	border-radius: 0px;
+    text-decoration: none;
+    
+    color: #fff;
+    background-color: #699bc4;
 }
-
 
 .btn-del {
     cursor: pointer;
@@ -42,50 +81,30 @@
 	background-color: #FA8072;
 }
 
-
-
-
-
-
-/*
-.btn-warning {
-    background-image: linear-gradient(to bottom, #f0ad4e 0px, #eb9316 100%);
-    background-repeat: repeat-x;
-    border-color: #e38d13;
+.remove-button {
+    text-align: center;
 }
-.btn-danger, .btn-default, .btn-info, .btn-primary, .btn-success, .btn-warning {
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.075);
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
-}
-.btn-warning {
-    background-color: #f0ad4e;
-    border-color: #eea236;
+
+.btn-del-all {
+    font: 14px Arial, Helvetica, sans-serif;
+    font-weight:bold;
+
     color: #fff;
-}
-.btn {
-    -moz-user-select: none;
-    background-image: none;
-    border: 1px solid transparent;
-    border-radius: 4px;
+    background-color: #CD5C5C;
+
     cursor: pointer;
     display: inline-block;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.42857;
-    margin-bottom: 0;
-    padding: 6px 12px;
+    
+    border-radius: 0px;
+    padding: 12px 30px;
+
     text-align: center;
     vertical-align: middle;
-    white-space: nowrap;
 }
-a {
-    color: #337ab7;
+
+.btn-del-all:hover {
     text-decoration: none;
+    
+    color: #fff;
+    background-color: #FA8072;
 }
-a {
-    background-color: transparent;
-}
-* {
-    box-sizing: border-box;
-}
-*/

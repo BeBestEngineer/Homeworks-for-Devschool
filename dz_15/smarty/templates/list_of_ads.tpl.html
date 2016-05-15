@@ -1,8 +1,17 @@
-<h3> List of Ads </h3>
-    
+<div class="form-group">
+<div class="col-sm-4">
+    <div class="text-left"> <h3> List of Ads </h3> </div>
+</div>
+<div class="col-sm-8">
+    <div class="text-right"> <a class="btn-del-all"> Remove all ads </a> </div>
+</div>
+</div>
     <table class="table table-hover" >
-        <td class="table-header" > Ad Title </td> <td class="table-header" > Price </td> <td class="table-header" > Company name </td> <td class="table-header" > Seller name </td> <td class="table-header" > Action </td>
+            <thead>
+                <th class="table-header" > Ad Title </th> <th class="table-header" > Price </th> <th class="table-header" > Company name </th> <th class="table-header" > Seller name </th> <th class="table-header-action" > Action </th>
+            </thead>
             <tbody>
                 {$ads_rows}
+                 <tr id="for-empty-table" class="for-empty-table" style="" > <td colspan="5"> No ads from database </td> </tr>
             </tbody>    
     </table>

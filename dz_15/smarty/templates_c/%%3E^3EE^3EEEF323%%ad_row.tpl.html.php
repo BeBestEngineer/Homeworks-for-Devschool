@@ -1,6 +1,6 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-05-12 13:29:06
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-15 12:06:51
          compiled from ad_row.tpl.html */ ?>
-<tr>    
+<tr class="ad">    
     <td> <a href = "?ad_show=<?php echo $this->_tpl_vars['ad_object']->get_Seller_type(); ?>
 &ad_key=<?php echo $this->_tpl_vars['ad_object']->get_Ad_key(); ?>
 "> <?php echo $this->_tpl_vars['ad_object']->get_Title(); ?>
@@ -19,7 +19,7 @@
 
         <?php endif; ?>
     </td>
-    <td> <a class="btn-del"> Remove ad </a> </td>   
+    <td class="remove-button"> <a class="btn-del"> Remove ad </a> </td>   
     <td style="display:none"><?php echo $this->_tpl_vars['ad_object']->get_Ad_key(); ?>
  </td>
 </tr>

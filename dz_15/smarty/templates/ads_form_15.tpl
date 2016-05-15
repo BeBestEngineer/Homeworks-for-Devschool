@@ -18,7 +18,7 @@
                 {/if}    
             </h3>
              
-            <form class="form-horizontal" role="form" action = "{$action_adress}" method = "POST">
+            <form class="form-horizontal" role="form" action = "{$action_adress}" method = "POST" name="ad">
                 <input type="hidden" name="id" value = "{$key_of_ad}" >
 
                 {if $smarty.get.seller_type eq 'Individual' or $smarty.get.ad_show eq 'Individual'}
@@ -60,7 +60,7 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label"> Title </label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" required placeholder="Title" pattern="^[a-zA-Z, 0-9.-]+$" name ="title" value = "{$data_of_ad.title|default:'Title'}" >
+                      <input type="text" class="form-control" required placeholder="Title" pattern="^[a-zA-Z, 0-9.-]+$" name ="title" value = "{$data_of_ad.title}" >
                     </div>
                 </div>    
                 <div class="form-group">
@@ -72,29 +72,35 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label"> Price </label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" required pattern ="^[ 0-9]+$" placeholder="Price" name ="price" value = "{$data_of_ad.price|default:'100'}" >
+                      <input type="text" class="form-control" required pattern ="^[ 0-9]+$" placeholder="Price" name ="price" value = "{$data_of_ad.price}" >
                     </div>
                 </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
+                        <div class="col-sm-4">
 
                         {if ( count( $data_of_ad ) eq 0 ) }
-                            <button class="button" type="submit" name="Button_pressed"> Add! </button>
+                            <button class="button" type="submit" name="Button_pressed"> Add </button>
                         {else}
-                            <button class="button" type="submit" name="Button_pressed"> Edit! </button>
+                            <button class="button" type="submit" name="Button_pressed"> Edit </button>
                         {/if}        
 
                         </div>
-                    </div>            
+                        <div class="col-sm-7">
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                            {*<input class="button" type="reset" value="Clear form">*}
+                            <a class="clear-button"> Clear form </a>
+                        </div>
+                    </div>
+                        <div class="col-sm-7">
+                        </div>                        
             </form>
                     
         </div>                    
         <div class="col-lg-6">
-            
-            {if ( $count_of_ads gt 0 ) }
-                {include file = 'list_of_ads.tpl.html'}
-            {/if}
-        
+            {include file = 'list_of_ads.tpl.html'}
         </div>
     </div>
 </div>

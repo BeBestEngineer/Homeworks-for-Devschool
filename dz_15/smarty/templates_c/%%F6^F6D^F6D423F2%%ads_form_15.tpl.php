@@ -1,7 +1,7 @@
-<?php /* Smarty version 2.6.25-dev, created on 2016-05-12 20:16:02
+<?php /* Smarty version 2.6.25-dev, created on 2016-05-14 09:21:45
          compiled from ads_form_15.tpl */ ?>
 <?php require_once(SMARTY_CORE_DIR . 'core.load_plugins.php');
-smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'ads_form_15.tpl', 47, false),array('modifier', 'default', 'ads_form_15.tpl', 63, false),)), $this); ?>
+smarty_core_load_plugins(array('plugins' => array(array('function', 'html_options', 'ads_form_15.tpl', 47, false),)), $this); ?>
 
 <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'header.tpl', 'smarty_include_vars' => array('title' => 'e-Bulletin board','title_name' => 'Nice price')));
@@ -27,7 +27,7 @@ unset($_smarty_tpl_vars);
             </h3>
              
             <form class="form-horizontal" role="form" action = "<?php echo $this->_tpl_vars['action_adress']; ?>
-" method = "POST">
+" method = "POST" name="ad">
                 <input type="hidden" name="id" value = "<?php echo $this->_tpl_vars['key_of_ad']; ?>
 " >
 
@@ -83,7 +83,7 @@ unset($_smarty_tpl_vars);
                 <div class="form-group">
                     <label class="col-sm-4 control-label"> Title </label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" required placeholder="Title" pattern="^[a-zA-Z, 0-9.-]+$" name ="title" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['title'])) ? $this->_run_mod_handler('default', true, $_tmp, 'Title') : smarty_modifier_default($_tmp, 'Title')); ?>
+                      <input type="text" class="form-control" required placeholder="Title" pattern="^[a-zA-Z, 0-9.-]+$" name ="title" value = "<?php echo $this->_tpl_vars['data_of_ad']['title']; ?>
 " >
                     </div>
                 </div>    
@@ -97,34 +97,39 @@ unset($_smarty_tpl_vars);
                 <div class="form-group">
                     <label class="col-sm-4 control-label"> Price </label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" required pattern ="^[ 0-9]+$" placeholder="Price" name ="price" value = "<?php echo ((is_array($_tmp=@$this->_tpl_vars['data_of_ad']['price'])) ? $this->_run_mod_handler('default', true, $_tmp, '100') : smarty_modifier_default($_tmp, '100')); ?>
+                      <input type="text" class="form-control" required pattern ="^[ 0-9]+$" placeholder="Price" name ="price" value = "<?php echo $this->_tpl_vars['data_of_ad']['price']; ?>
 " >
                     </div>
                 </div>
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
+                        <div class="col-sm-4">
 
                         <?php if (( count ( $this->_tpl_vars['data_of_ad'] ) == 0 )): ?>
-                            <button class="button" type="submit" name="Button_pressed"> Add! </button>
+                            <button class="button" type="submit" name="Button_pressed"> Add </button>
                         <?php else: ?>
-                            <button class="button" type="submit" name="Button_pressed"> Edit! </button>
+                            <button class="button" type="submit" name="Button_pressed"> Edit </button>
                         <?php endif; ?>        
 
                         </div>
-                    </div>            
+                        <div class="col-sm-7">
+                        </div>
+                    </div>    
+                    <div class="form-group">
+                        <div class="col-sm-4">
+                                                        <a class="clear-button"> Clear form </a>
+                        </div>
+                    </div>
+                        <div class="col-sm-7">
+                        </div>                        
             </form>
                     
         </div>                    
         <div class="col-lg-6">
-            
-            <?php if (( $this->_tpl_vars['count_of_ads'] > 0 )): ?>
-                <?php $_smarty_tpl_vars = $this->_tpl_vars;
+            <?php $_smarty_tpl_vars = $this->_tpl_vars;
 $this->_smarty_include(array('smarty_include_tpl_file' => 'list_of_ads.tpl.html', 'smarty_include_vars' => array()));
 $this->_tpl_vars = $_smarty_tpl_vars;
 unset($_smarty_tpl_vars);
  ?>
-            <?php endif; ?>
-        
         </div>
     </div>
 </div>

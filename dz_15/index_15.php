@@ -15,18 +15,27 @@ ini_set('display_errors', 1);
     # Подключение файла с классами
     require_once 'classes_15.php';
     
-    # Добавление, редактирование объявления компании или частного лица
-    if ( isset( $_POST[ 'Button_pressed' ])) {                                 
-        
-        if ( $_POST[ 'seller_type' ] == 'Company' ) {
-            $ad = new CompanyAds( $_POST );
-        }
-        elseif ( $_POST[ 'seller_type' ] == 'Individual' ) {
-            $ad = new IndividualAds( $_POST );
-        }
-    }    
-    
     $repository = AdsRepository::instance();
-    $repository -> Output_forms_to_display( $smarty );
-
+    
+    # Запись данных нового или отредактированного объявления в базу данных и создание хранилища
+    if ( !isset( $_GET[ 'ad_show' ])) {                                 
+        
+        if ( isset( $_POST[ 'Button_pressed' ])) {
+            if ( $_POST[ 'seller_type' ] == 'Company' ) {
+                $ad = new CompanyAds( $_POST );
+            }
+            elseif ( $_POST[ 'seller_type' ] == 'Individual' ) {
+                $ad = new IndividualAds( $_POST );
+            }
+        }
+        $repository -> create_Storage();
+        $data_of_ad = NULL;
+    
+    # Чтение данных редактируемого объявления из хранилища
+    } else {
+        $data_of_ad = $repository -> Get_data_of_ad_from_storage();
+    }
+    
+    $repository -> Output_forms_to_display( $smarty, $data_of_ad, $data_of_ad[ 'id' ] );
+    
 ?>

@@ -152,7 +152,7 @@ class AdsRepository {
 
     public function Remove_all_ads_from_db () {
         $db = Db::instance();
-        $db -> query( "DELETE FROM ads WHERE 1 = 1" );
+        $db -> query( "DELETE FROM ads" );
     }    
     
     private function Sel_of_Cities () {

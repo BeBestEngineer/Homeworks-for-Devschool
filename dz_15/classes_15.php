@@ -145,9 +145,14 @@ class AdsRepository {
         $db -> query( "REPLACE INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars ));        
     }
 
-    public function Remove_from_db () {
+    public function Remove_ad_from_db () {
         $db = Db::instance();
         $db -> query( "DELETE FROM ads WHERE id = ?d", $_GET[ 'del_id' ]);
+    }
+
+    public function Remove_all_ads_from_db () {
+        $db = Db::instance();
+        $db -> query( "DELETE FROM ads WHERE 1 = 1" );
     }    
     
     private function Sel_of_Cities () {

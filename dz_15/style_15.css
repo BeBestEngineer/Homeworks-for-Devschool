@@ -1,14 +1,10 @@
 
-td {
+td, th {
     vertical-align: middle !important;
 }
 
 .form-control {
     border-radius: 0px;
-}
-
-.table > thead > tr > th {
-    vertical-align: middle;
 }
 
 .for-empty-table {
@@ -20,91 +16,49 @@ td {
     
 }
 
-.table-header {
+.table-header, .table-header-action {
     font:14px Arial, Helvetica, sans-serif;
     font-weight:bold;
-    
     background-color:#4581AE;
     color:#E5FFFF;
 }
 
 .table-header-action {
-    font:14px Arial, Helvetica, sans-serif;
-    font-weight:bold;
-    
-    background-color:#4581AE;
-    color:#E5FFFF;
-    
     text-align: center;
 }
 
-.button, .clear-button {
-	text-decoration:none; 
-	text-align:center; 
-	padding:12px 30px; 
-	border:solid 1px #004F72;  
-	font:14px Arial, Helvetica, sans-serif; 
-	font-weight:bold; 
-	color:#E5FFFF; 
-	background-color:#4581AE;
-    float:right;
-}
-
-.button:hover, .clear-button:hover {
+.button, .clear-button, .btn-del, .btn-del-all {
     cursor: pointer;
     display: inline-block;
+    color: #fff;    
+    padding:12px 30px; 
+    border:solid 1px #fff;
+    font:14px Arial, Helvetica, sans-serif; 
+    font-weight:bold;
+    background-color:#4581AE;    
+}
 
-    text-decoration: none;
-    
+.btn-del, .btn-del-all {
+    padding: 4px 10px;
+    font-weight:normal;    
+    background-color: #CD5C5C;        
+}
+
+.btn-del-all {
+    padding: 12px 30px;
+    font-weight:bold;    
+}
+
+.button:hover, .clear-button:hover, .btn-del:hover, .btn-del-all:hover {
+    text-decoration: none;    
     color: #fff;
     background-color: #699bc4;
 }
 
-.btn-del {
-    cursor: pointer;
-    display: inline-block;
-	
-	color: #fff;
-	background-color: #CD5C5C;
-    
-    border-radius: 0px;
-    padding: 4px 10px;
-
-    text-align: center;
-    vertical-align: middle;
-}
-
-.btn-del:hover {
-	text-decoration: none;
-	
-	color: #fff;
-	background-color: #FA8072;
+.btn-del:hover, .btn-del-all:hover {
+    background-color: #FA8072;
 }
 
 .remove-button {
     text-align: center;
-}
-
-.btn-del-all {
-    font: 14px Arial, Helvetica, sans-serif;
-    font-weight:bold;
-
-    color: #fff;
-    background-color: #CD5C5C;
-
-    cursor: pointer;
-    display: inline-block;
-    
-    border-radius: 0px;
-    padding: 12px 30px;
-
-    text-align: center;
-    vertical-align: middle;
-}
-
-.btn-del-all:hover {
-    text-decoration: none;
-    
-    color: #fff;
-    background-color: #FA8072;
 }

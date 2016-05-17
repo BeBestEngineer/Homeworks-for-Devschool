@@ -165,10 +165,6 @@ class AdsRepository {
         return $db -> selectCol( 'SELECT category, section_category AS ARRAY_KEY_1, id_category as ARRAY_KEY_2 FROM categories' );        
     }   
     
-    private function get_Count_of_ads() {
-        return count( $this -> ads );
-    }
-
     public function Get_data_of_ad_from_storage() {
         $this -> create_Storage();
         $ad_object = $this -> ads[ intval( $_GET[ 'ad_key' ]) ];
@@ -186,7 +182,6 @@ class AdsRepository {
             
         # Данные для вывода на экран списка объявлений            
             $this -> prepare_Objects_for_Smarty( $smarty );
-            $smarty->assign('count_of_ads', $this -> get_Count_of_ads() );
 
         # Вывод на экран
             $smarty -> display('ads_form_15.tpl');            

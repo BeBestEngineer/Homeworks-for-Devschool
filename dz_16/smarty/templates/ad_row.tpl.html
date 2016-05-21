@@ -1,0 +1,16 @@
+<tr class="ad">    
+    <td> <a class="btn-show"> {$ad_object->get_Title()} </a> </td>   
+    <td> {$ad_object->get_Price()} </td>
+    <td>
+        {if $ad_object instanceof CompanyAds }
+            {$ad_object->get_Company_name()}
+        {/if}
+    </td>
+    <td>
+        {if $ad_object instanceof IndividualAds }
+            {$ad_object->get_Seller_name()}
+        {/if}
+    </td>
+    <td class="remove-button"> <a class="btn-del"> Remove ad </a> </td>   
+    <td style="display:none">{$ad_object->get_Ad_key()}</td>
+</tr>

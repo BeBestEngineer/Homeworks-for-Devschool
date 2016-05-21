@@ -1,0 +1,85 @@
+.center {
+    position: relative;
+    top: 18px;
+    right: 0;  
+}
+
+
+td, th  {
+    vertical-align: middle !important;
+}
+
+.form-control, .alert {
+    border-radius: 0px;
+}
+
+.for-empty-table {
+    text-align: center;
+    color: #FF4500;
+}
+
+.ad {
+    
+}
+
+.table-header, .table-header-action {
+    font:14px Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    background-color:#4581AE;
+    color:#E5FFFF;
+}
+
+.table-header-action {
+    text-align: center;
+}
+
+.btn-add-edit, .clear-button, .btn-del, .btn-del-all, .btn-show, .show-storage {
+    cursor: pointer;
+    display: inline-block;
+    color: #fff;    
+    padding:12px 30px; 
+    border:solid 1px #fff;
+    font:14px Arial, Helvetica, sans-serif; 
+    font-weight:bold;
+    background-color:#4581AE;
+}
+
+.btn-del, .btn-del-all {
+    padding: 4px 10px;
+    font-weight:normal;    
+    background-color: #CD5C5C;        
+}
+
+.btn-del-all {
+    padding: 12px 30px;
+    font-weight:bold;    
+}
+
+.btn-show {
+    padding: 5px 5px;
+    font-weight: normal;
+    color: #696969;
+    background-color: #F5F5F5;    
+}
+
+.btn-seller-type {
+    cursor: pointer;
+}
+
+.btn-add-edit:hover, .clear-button:hover, .btn-del:hover, .btn-del-all:hover, .btn-show:hover, .show-storage:hover {
+    text-decoration: none;    
+    color: #fff;
+    background-color: #699bc4;
+}
+
+.btn-del:hover, .btn-del-all:hover {
+    background-color: #FA8072;
+}
+
+.btn-show:hover {
+    background-color: #696969;
+}
+
+.remove-button {
+    text-align: center;
+}

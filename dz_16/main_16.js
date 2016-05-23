@@ -122,8 +122,8 @@ $(document).ready(function () {
         $.post('control_JS_16.php?action=add&id=' + id, data_from_form, function ( last_ad_with_status ) {
             $('.for-clone').clone().appendTo('tbody#tbody-id').removeClass('for-clone').addClass('ad').removeAttr('style');
             
-            console.log( last_ad_with_status['st'] );
-            last_ad = last_ad_with_status['ad'];
+            console.log( last_ad_with_status.st );
+            last_ad = last_ad_with_status.ad;
             
             $('tbody#tbody-id tr:last td:eq(0) a').text(last_ad.title);
             $('tbody#tbody-id tr:last td:eq(1)').text(last_ad.price);
@@ -142,8 +142,8 @@ $(document).ready(function () {
 
         $.post('control_JS_16.php?action=add&id=' + id, data_from_form, function ( edit_ad_with_status ) {
             var adress_in_DOM = "tbody tr:has(td:contains('" + id + "'))";
-            console.log( edit_ad_with_status['st'] );
-            edit_ad = edit_ad_with_status['ad'];
+            console.log( edit_ad_with_status.st );
+            edit_ad = edit_ad_with_status.ad;
             
             $(adress_in_DOM + " td:eq(0) a").text(edit_ad.title);
             $(adress_in_DOM + " td:eq(1)").text(edit_ad.price);

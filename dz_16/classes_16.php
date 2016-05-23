@@ -68,7 +68,6 @@ class CompanyAds extends Ads {
     public function get_Company_name() {
         return $this -> company_name;
     }
-
 }
 
 class IndividualAds extends Ads {    
@@ -94,6 +93,8 @@ class IndividualAds extends Ads {
 }
 
 class AdsRepository { 
+    private $response_DbSimple = array();
+    private $ad_key_private;
     private $ads = array();
     private static $instance = NULL;
            
@@ -142,17 +143,56 @@ class AdsRepository {
         }       
         $vars = $ad -> Get_All_Object_Properties();
         $db = Db::instance();
-        $db -> query( "REPLACE INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars ));        
+
+        if ( isset( $_GET['id'] ) && $_GET['id'] == FALSE ) {
+                $response_DbSimple = $db -> query( "INSERT INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars )); //возвращает ид объявления или false
+            $this -> response_DbSimple['val'] = $response_DbSimple;
+            $this -> response_DbSimple['procedure'] = 'insert';
+            
+            
+        } elseif( isset( $_GET['id'] ) ) {
+            $this -> ad_key_private = $vars['id'];
+                $response_DbSimple = $db -> query( 'UPDATE ads SET ?a WHERE id = ?d', $vars, $vars['id'] );                       //возвращает количество обновлённых строк или 0
+            $this -> response_DbSimple['val'] = $response_DbSimple;
+            $this -> response_DbSimple['procedure'] = 'update';            
+        }
     }
 
+    public function get_status_after_write_Ad_to_db() {
+        switch( $this -> response_DbSimple['procedure'] ) {
+            case 'insert':
+                if ( $this -> response_DbSimple['val'] ) {
+                    $result[ 'status' ] = 'success';
+                    $result[ 'message' ] = 'Ad no. '.$this -> response_DbSimple['val'].' was insert to database';                    
+                } else {
+                    $result[ 'status' ] = 'error';
+                    $result[ 'message' ] = 'Ad was not insert to database';                    
+                }
+            break;
+            case 'update':
+                if ( $this -> response_DbSimple['val'] ) {
+                    $result[ 'status' ] = 'success';
+                    $result[ 'message' ] = 'Ad no. '.$this -> ad_key_private.' was update to database';                  
+                } else {
+                    $result[ 'status' ] = 'error';
+                    $result[ 'message' ] = 'Ad was not update to database';                   
+                }                
+            break;
+            default:
+            break;
+        }
+        return $result;        
+    }
+    
+    
     public function Remove_ad_from_db () {
         $db = Db::instance();
         if ( $db -> query( "DELETE FROM ads WHERE id = ?d", $_GET[ 'del_id' ]) ) {
             $result[ 'status' ] = 'success';
-            $result[ 'message' ] = 'Ad no '.$_GET[ 'del_id' ].' have been removed';
+            $result[ 'message' ] = 'Ad no '.intval( $_GET[ 'del_id' ] ).' have been removed';
         } else {
             $result[ 'status' ] = 'error';
-            $result[ 'message' ] = 'Ad no '.$_GET[ 'del_id' ].' has not been removed';
+            $result[ 'message' ] = 'Ad no '.intval( $_GET[ 'del_id' ] ).' has not been removed';
         }
         $result_encode = json_encode( $result );
         return $result_encode;
@@ -198,7 +238,7 @@ class AdsRepository {
     }   
     
     public function Output_forms_to_display( $smarty ) {   
-        # Данные для вывода на экран формы
+        # Данные для селекторов формы
             $smarty->assign('array_for_city_select', $this -> Sel_of_Cities() );
             $smarty->assign('array_for_category_select', $this -> Sel_of_Categories() );
             

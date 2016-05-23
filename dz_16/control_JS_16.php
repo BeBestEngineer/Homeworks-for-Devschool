@@ -19,7 +19,10 @@ switch( $_GET[ 'action' ] ) {
             elseif ( $_POST[ 'seller_type' ] == 'Individual' ) {
                 $ad = new IndividualAds( $_POST );
             }
-            echo json_encode( $repository -> get_ad_from_db() );
+            $resp = array();
+                $resp['st'] = $repository -> get_status_after_write_Ad_to_db();
+                $resp['ad'] = $repository -> get_ad_from_db();
+            echo json_encode( $resp );
         break;
         case 'edit':
             echo json_encode( $repository -> get_ad_from_db_for_Edit() );

@@ -89,6 +89,7 @@ class IndividualAds extends Ads {
 class AdsRepository { 
     private $response_DbSimple = array();
     private $ad_key_private;
+    private $response_for_js = array();
     private $ads = array();
     private static $instance = NULL;
            
@@ -150,6 +151,9 @@ class AdsRepository {
             $this -> response_DbSimple['val'] = $response_DbSimple;
             $this -> response_DbSimple['procedure'] = 'update';            
         }
+        $this -> get_status_after_write_Ad_to_db();
+        $this -> get_ad_from_db();
+        return json_encode( $this -> response_for_js );
     }
 
     public function get_status_after_write_Ad_to_db() {
@@ -175,7 +179,8 @@ class AdsRepository {
             default:
             break;
         }
-        return $result;        
+        //return $result;
+        $this -> response_for_js['st'] = $result;
     }
     
     
@@ -218,16 +223,17 @@ class AdsRepository {
     public function get_ad_from_db() {
         $db = Db::instance();
         if( $_GET['id'] == '' ) {
-            return $db -> selectRow( 'SELECT * FROM ads WHERE id=LAST_INSERT_ID()' );
+            $result = $db -> selectRow( 'SELECT * FROM ads WHERE id=LAST_INSERT_ID()' );
         } else {
-            return $db -> selectRow( 'SELECT * FROM ads WHERE id = ?d', $_GET[ 'id' ]);
+            $result = $db -> selectRow( 'SELECT * FROM ads WHERE id = ?d', $_GET[ 'id' ]);
         }
+        $this -> response_for_js['ad'] = $result;
     }
     
     public function get_ad_from_db_for_Edit() {
         $db = Db::instance();
         if ( $_GET[ 'edit_id' ] ) {
-            return $db -> selectRow( "SELECT * FROM ads WHERE id = ?d", $_GET[ 'edit_id' ]);
+            return json_encode( $db -> selectRow( "SELECT * FROM ads WHERE id = ?d", $_GET[ 'edit_id' ]) );
         }
     }   
     

@@ -56,9 +56,6 @@ class CompanyAds extends Ads {
             $this -> company_name    = $from_ad[ 'company_name' ];   
             $this -> company_address = $from_ad[ 'company_address' ];
             $this -> website         = $from_ad[ 'website' ];
-
-            $repository = AdsRepository::instance();
-            $repository -> Write_to_db( $this );
     }
     
     public function Get_All_Object_Properties() {
@@ -78,9 +75,6 @@ class IndividualAds extends Ads {
         parent::__construct( $from_ad );
             $this -> seller_name = $from_ad[ 'seller_name' ];
             $this -> vk_account  = $from_ad[ 'vk_account' ];
-            
-            $repository = AdsRepository::instance();
-            $repository -> Write_to_db( $this );
     }
     
     public function Get_All_Object_Properties() {
@@ -137,20 +131,20 @@ class AdsRepository {
             $smarty -> assign( 'ads_rows', $row );
     }
 
-    public function Write_to_db( Ads $ad ) {
+    public function Write_ad_to_db( Ads $ad ) {
         if ( ! ( $ad instanceof CompanyAds ) && ! ( $ad instanceof IndividualAds ) && ! ( $this instanceof AdsRepository ) ) {
             die( 'Can not use this method in class conctructor' );    
         }       
         $vars = $ad -> Get_All_Object_Properties();
         $db = Db::instance();
 
-        if ( isset( $_GET['id'] ) && $_GET['id'] == FALSE ) {
+        if ( $_GET['id'] == false ) {
                 $response_DbSimple = $db -> query( "INSERT INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars )); //возвращает ид объявления или false
             $this -> response_DbSimple['val'] = $response_DbSimple;
             $this -> response_DbSimple['procedure'] = 'insert';
             
             
-        } elseif( isset( $_GET['id'] ) ) {
+        } else {
             $this -> ad_key_private = $vars['id'];
                 $response_DbSimple = $db -> query( 'UPDATE ads SET ?a WHERE id = ?d', $vars, $vars['id'] );                       //возвращает количество обновлённых строк или 0
             $this -> response_DbSimple['val'] = $response_DbSimple;
@@ -172,10 +166,10 @@ class AdsRepository {
             case 'update':
                 if ( $this -> response_DbSimple['val'] ) {
                     $result[ 'status' ] = 'success';
-                    $result[ 'message' ] = 'Ad no. '.$this -> ad_key_private.' was update to database';                  
+                    $result[ 'message' ] = 'Ad no. '.$this -> ad_key_private.' was update to database';
                 } else {
                     $result[ 'status' ] = 'error';
-                    $result[ 'message' ] = 'Ad was not update to database';                   
+                    $result[ 'message' ] = 'Ad was not update to database or data are not changed';
                 }                
             break;
             default:

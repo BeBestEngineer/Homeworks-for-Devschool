@@ -25,13 +25,20 @@ CREATE TABLE `ads` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `ads` (`id`, `company_name`, `company_address`, `website`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`, `seller_type`) VALUES
-(1242,	'A1',	'A',	'A',	'',	'',	'A',	'A',	'empty',	'empty',	'A1',	'A',	'A1',	'Company'),
-(1243,	'B',	'B',	'B',	'',	'',	'B',	'B',	'empty',	'empty',	'B',	'B',	'B',	'Company'),
-(1244,	'',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'Hoverboard',	'',	'50 0000',	'Company'),
-(1245,	'',	'',	'',	'AL1',	'vk.com/3851',	'300600@gmail.com1',	'+0 000-000-00-001',	'78',	'ws',	'HoverBoard1',	'Ammmazzzing Board1',	'300 0001',	'Individual'),
-(1246,	'Nissan',	'Japan',	'nissan.jp',	'',	'',	'info@nissan.jp',	'+3-100-200-30-40',	'78',	'fb',	'370Z',	'6.6 L',	'50 000',	'Company'),
-(1247,	'',	'',	'',	'In1',	'In1',	'In1',	'In1',	'77',	'ot',	'In1',	'In1',	'In1',	'Individual'),
-(1248,	'In1',	'In1',	'In1',	'',	'',	'In1',	'In1',	'78',	'fb',	'In1',	'In1',	'In1',	'Company');
+(1254,	'',	'',	'',	'U',	'U',	'U',	'U',	'103',	'empty',	'U',	'U',	'U',	'Individual'),
+(1253,	'',	'',	'',	'V13',	'V1',	'V1',	'V1',	'78',	'ph',	'V1',	'V1',	'V1',	'Individual'),
+(1260,	'',	'',	'',	'2',	'2',	'2',	'2',	'empty',	'empty',	'2',	'2',	'2',	'Individual'),
+(1255,	'7',	'7',	'7',	'',	'',	'7',	'7',	'77',	'ph',	'7',	'u7',	'7',	'Company'),
+(1256,	'a',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'a',	'',	'1',	'Company'),
+(1257,	'a',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'a',	'',	'1',	'Company'),
+(1259,	'D',	'D',	'D',	'',	'',	'D',	'D',	'78',	'fw',	'D',	'D',	'D',	'Company'),
+(1261,	'',	'',	'',	'5',	'5',	'5',	'5',	'empty',	'empty',	'5',	'5',	'5',	'Individual'),
+(1288,	'f',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'f',	'',	'f',	'Company'),
+(1319,	'G1',	'',	'',	'',	'',	'',	'',	'96',	'sm',	'G1',	'',	'G1',	'Company'),
+(1314,	'32',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'2311',	'',	'23',	'Company'),
+(1313,	'',	'',	'',	'543',	'',	'',	'',	'empty',	'empty',	'34511',	'',	'4321',	'Individual'),
+(1312,	'12',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'12',	'',	'12',	'Company'),
+(1315,	'1',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'1',	'1',	'1222',	'Company');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -58,6 +65,43 @@ INSERT INTO `categories` (`section_category`, `id_category`, `category`) VALUES
 ('Other things',	'fh',	'For health'),
 ('Other things',	'fd',	'For dislocation');
 
+DROP TABLE IF EXISTS `copy_ads`;
+CREATE TABLE `copy_ads` (
+  `id` smallint(6) NOT NULL AUTO_INCREMENT,
+  `company_name` varchar(20) NOT NULL,
+  `company_address` varchar(20) NOT NULL,
+  `website` varchar(20) NOT NULL,
+  `seller_name` varchar(20) NOT NULL,
+  `vk_account` varchar(20) NOT NULL,
+  `e_mail` varchar(20) NOT NULL,
+  `phone_number` varchar(20) NOT NULL,
+  `city_id` varchar(20) NOT NULL,
+  `category_id` varchar(20) NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `description` varchar(20) NOT NULL,
+  `price` varchar(20) NOT NULL,
+  `seller_type` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+INSERT INTO `copy_ads` (`id`, `company_name`, `company_address`, `website`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`, `seller_type`) VALUES
+(1254,	'',	'',	'',	'U',	'U',	'U',	'U',	'103',	'empty',	'U',	'U',	'U',	'Individual'),
+(1253,	'',	'',	'',	'V1',	'V1',	'V1',	'V1',	'78',	'ph',	'V1',	'V1',	'V1',	'Individual'),
+(1260,	'',	'',	'',	'2',	'2',	'2',	'2',	'empty',	'empty',	'2',	'2',	'2',	'Individual'),
+(1255,	'7',	'7',	'7',	'',	'',	'7',	'7',	'77',	'ph',	'7',	'u7',	'7',	'Company'),
+(1256,	'a',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'a',	'',	'1',	'Company'),
+(1257,	'a',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'a',	'',	'1',	'Company'),
+(1259,	'D',	'D',	'D',	'',	'',	'D',	'D',	'78',	'fw',	'D',	'D',	'D',	'Company'),
+(1261,	'',	'',	'',	'5',	'5',	'5',	'5',	'empty',	'empty',	'5',	'5',	'5',	'Individual'),
+(1288,	'f',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'f',	'',	'f',	'Company'),
+(1289,	'f',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'f',	'',	'f',	'Company'),
+(1290,	'4',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'4',	'',	'4',	'Company'),
+(1291,	'8',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'8',	'',	'8',	'Company'),
+(1292,	'o',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'o',	'',	'o',	'Company'),
+(1297,	'B',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'B',	'',	'B',	'Company'),
+(1299,	'D',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'D',	'',	'D',	'Company'),
+(1295,	'2',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'2',	'',	'2',	'Company');
+
 DROP TABLE IF EXISTS `russland`;
 CREATE TABLE `russland` (
   `region` varchar(20) NOT NULL,
@@ -83,4 +127,4 @@ INSERT INTO `russland` (`region`, `id_city`, `city`) VALUES
 ('Far_East',	25,	'Nahodka'),
 ('Far_East',	28,	'Blagovechensk');
 
--- 2016-05-21 16:52:58
+-- 2016-05-24 04:45:14

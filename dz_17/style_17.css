@@ -3,11 +3,25 @@ td, th  {
 }
 
 input.valid {
-    background-image: url(images/valid_input_image.png);
+    background-image: url(images/valid_input_image_25x25_2.png);
+    border-color: #b2dba1 !important;    
 }
 
 input.error {
-    background-image: url(images/error_input_image.png);
+    background-image: url(images/error_input_image_25x25_4.png);
+    border-color: #b98686 !important;
+}
+
+textarea.valid {
+    border-color: #b2dba1 !important;    
+}
+
+textarea.error {
+    border-color: #b98686 !important;
+}
+
+span.help-block {
+    color: #b98686 !important;
 }
 
 .center {
@@ -54,7 +68,7 @@ input.error {
 .btn-del, .btn-del-all {
     padding: 4px 10px;
     font-weight:normal;    
-    background-color: #CD5C5C;        
+    background-color: #4581AE;        
 }
 
 .btn-del-all {
@@ -82,7 +96,10 @@ input.error {
 }
 
 .btn-del:hover, .btn-del-all:hover {
-    background-color: #FA8072;
+    color: #a94442;
+    background-color: #ecd0d0;
+    background-repeat: repeat-x;
+    border-color: #a94442 !important;
 }
 
 .btn-show:hover {

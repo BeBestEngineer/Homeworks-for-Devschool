@@ -25,20 +25,13 @@ CREATE TABLE `ads` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 INSERT INTO `ads` (`id`, `company_name`, `company_address`, `website`, `seller_name`, `vk_account`, `e_mail`, `phone_number`, `city_id`, `category_id`, `title`, `description`, `price`, `seller_type`) VALUES
-(1254,	'',	'',	'',	'U',	'U',	'U',	'U',	'103',	'empty',	'U',	'U',	'U',	'Individual'),
-(1253,	'',	'',	'',	'V13',	'V1',	'V1',	'V1',	'78',	'ph',	'V1',	'V1',	'V1',	'Individual'),
-(1260,	'',	'',	'',	'2',	'2',	'2',	'2',	'empty',	'empty',	'2',	'2',	'2',	'Individual'),
-(1255,	'7',	'7',	'7',	'',	'',	'7',	'7',	'77',	'ph',	'7',	'u7',	'7',	'Company'),
-(1256,	'a',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'a',	'',	'1',	'Company'),
-(1257,	'a',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'a',	'',	'1',	'Company'),
-(1259,	'D',	'D',	'D',	'',	'',	'D',	'D',	'78',	'fw',	'D',	'D',	'D',	'Company'),
-(1261,	'',	'',	'',	'5',	'5',	'5',	'5',	'empty',	'empty',	'5',	'5',	'5',	'Individual'),
-(1288,	'f',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'f',	'',	'f',	'Company'),
-(1319,	'G1',	'',	'',	'',	'',	'',	'',	'96',	'sm',	'G1',	'',	'G1',	'Company'),
-(1314,	'32',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'2311',	'',	'23',	'Company'),
-(1313,	'',	'',	'',	'543',	'',	'',	'',	'empty',	'empty',	'34511',	'',	'4321',	'Individual'),
-(1312,	'12',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'12',	'',	'12',	'Company'),
-(1315,	'1',	'',	'',	'',	'',	'',	'',	'empty',	'empty',	'1',	'1',	'1222',	'Company');
+(1412,	'',	'',	'',	'f',	'358',	'500500@gmail.com',	'+1-400-200-77-99',	'empty',	'empty',	'HoverBoards BTF',	'cdcd2',	'1 000 000',	'Individual'),
+(1419,	'General Electric',	'g',	'http://as.net',	'',	'',	'info@ml.net',	'+1-400-200-77-99',	'empty',	'empty',	'M100',	'p',	'1 000 000 000',	'Company'),
+(1427,	'g',	'g',	'http://as.net',	'',	'',	'500500@gmail.com',	'+1-400-200-77-99',	'78',	'fb',	'g',	'Test 1 Company',	'1',	'Company'),
+(1429,	'',	'',	'',	'I',	'I',	'info@ml.net',	'+1-400-200-77-99',	'93',	'fb',	'I',	'I tEST iNDIVIDUAL 2',	'2',	'Individual'),
+(1430,	'',	'',	'',	'G',	'G',	'info@ml.net',	'+1-400-200-77-99',	'93',	'fb',	'G',	'G TEST INDIVIDUAL',	'3',	'Individual'),
+(1431,	'C',	'C',	'http://as.net',	'',	'',	'500500@gmail.com',	'+1-400-200-77-99',	'78',	'fw',	'C',	'C',	'4',	'Company'),
+(1426,	'',	'',	'',	'AllVOO',	'300600',	'info@ml.net',	'+1-400-200-77-99',	'154',	'ho',	'Thing 1000',	'88',	'10',	'Individual');
 
 DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
@@ -127,4 +120,4 @@ INSERT INTO `russland` (`region`, `id_city`, `city`) VALUES
 ('Far_East',	25,	'Nahodka'),
 ('Far_East',	28,	'Blagovechensk');
 
--- 2016-05-24 04:45:14
+-- 2016-05-26 13:50:35

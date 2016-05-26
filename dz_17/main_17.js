@@ -49,8 +49,10 @@ $(document).ready(function () {
     }
 
     function show_ad(but) {
+        $('input').removeAttr('disabled');
         $('div#rowAdd').hide();
         $('div#rowEdit').show();
+        $('#seller-type-links').hide('slow');
 
         var trx = $(but).closest('tr');
         var id = trx.children('td:last').html();
@@ -80,6 +82,7 @@ $(document).ready(function () {
     // функция которая вызывается при нажатии на button Add или button Edit, где button  - тип элемента DOM
     function showResponse( res ) {        
                     $('#message-box-1').show('slow');
+                    $('#seller-type-links').show('slow');
         if ( $('input[name=id]').val() ) {
             if ( res.write ) {
                 console.log( 'Ad no. '+ res.get_write.id +' has been updated' );
@@ -127,8 +130,7 @@ $(document).ready(function () {
     // подключаем валидацию полей
     $.validate({
         lang: 'en',
-        form : '#adsform',
-        borderColorOnError : '#FF1493'
+        form : '#adsform'        
     });
 
     // настраиваем AJAXForm
@@ -145,13 +147,21 @@ $(document).ready(function () {
     $('a.btn-seller-type').on('click', function () {
 
             if ($(this).is('#seller-type-Company')) {
+                $('#Company-fields input').removeAttr('disabled');
+                $('#Individual-fields input').val('').attr('disabled', '');
+            
                 $('#Individual-fields').hide();
                 $('#Company-fields').show();
+                
                 $('input[name=seller_type]').val('Company');
 
             } else if ($(this).is('#seller-type-Individual')) {
+                $('#Individual-fields input').removeAttr('disabled');
+                $('#Company-fields input').val('').attr('disabled', '');
+            
                 $('#Company-fields').hide();
                 $('#Individual-fields').show();
+            
                 $('input[name=seller_type]').val('Individual');
             }
     });

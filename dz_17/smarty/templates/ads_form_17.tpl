@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-6">        
             <h2> e-Bulletin board </h2>
-                <i> Adding ad: <a id="seller-type-Company" class="btn-seller-type"> For Company </a> or <a id="seller-type-Individual" class="btn-seller-type"> For Individual </a> </i>
+                <div id="seller-type-links"><i> Adding ad: <a id="seller-type-Company" class="btn-seller-type"> For Company </a> or <a id="seller-type-Individual" class="btn-seller-type"> For Individual </a> </i></div>
         </div>
         <div class="col-md-6 center">        
             <div id="message-box-1" class="alert alert-warning alert-dismissible" role="alert" style="display:none">

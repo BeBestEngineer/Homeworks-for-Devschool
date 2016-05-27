@@ -30,6 +30,22 @@ span.help-block {
     right: 0;  
 }
 
+.row-height-1 {
+    height: 92px;
+}
+
+.row-height-2 {
+    height: 42px;
+}
+
+.row-height-3 {
+    height: 120px;
+}
+
+.marg{
+    margin-top: 14px;
+}
+
 .form-control, .alert {
     border-radius: 0px;
 }

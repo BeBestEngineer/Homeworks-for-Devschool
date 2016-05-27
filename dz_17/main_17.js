@@ -2,10 +2,14 @@ $(document).ready(function () {
 
     function show_message_for_empty_list() {
         if (!$('tr').is('.ad')) {
-            $('#for-empty-table').show();
+            $('#for-empty-table').delay( 600 ).fadeIn('slow');
         } else {
-            $('#for-empty-table').hide();
+            $('#for-empty-table').delay( 1600 ).fadeOut('slow');
         }
+    }
+
+    function show_message_box_1() {
+        $('#message-box-1').delay( 600 ).fadeIn('slow').delay( 2000 ).fadeOut('slow');
     }
 
     function clear_form() {
@@ -16,8 +20,8 @@ $(document).ready(function () {
     }
 
     function prepare_form_for_add_new_ad() {
-        $('div#rowAdd').show();
-        $('div#rowEdit').hide();
+        $('div#rowEdit').fadeOut('slow');
+        $('div#rowAdd').delay( 600 ).fadeIn('slow');
         $('input[name=id]').val('');    // обнуляем id, чтобы можно было добавлять новые объявления        
     }
 
@@ -27,7 +31,6 @@ $(document).ready(function () {
         var id_ob = {"del_id": id};
 
         $.getJSON('control_JS_17.php?action=delete', id_ob, function (response) {
-                    $('#message-box-1').show('slow');
             if ( response ) {
                 console.log( 'Ad no. ' + id + ' have been removed' );
                 $(trx).fadeOut('slow', function () {
@@ -43,6 +46,7 @@ $(document).ready(function () {
                     $('#message-box-1-text-header').text('A request is failed.');
                     $('#message-box-1-text').text( 'Ad no. ' + id + ' was not removed' );
             }
+            show_message_box_1();
             clear_form();                   
             prepare_form_for_add_new_ad();
         });
@@ -50,9 +54,11 @@ $(document).ready(function () {
 
     function show_ad(but) {
         $('input').removeAttr('disabled');
-        $('div#rowAdd').hide();
-        $('div#rowEdit').show();
-        $('#seller-type-links').hide('slow');
+        $('div#rowAdd').fadeOut('slow');
+        $('div#rowEdit').delay( 600 ).fadeIn('slow');
+        //$('.rowAddEditToggle').delay( 600 ).fadeToggle( 300 ); 
+        //$('#seller-type-links').hide('slow');
+        $('#seller-type-links').delay( 600 ).fadeOut('slow');
 
         var trx = $(but).closest('tr');
         var id = trx.children('td:last').html();
@@ -81,8 +87,7 @@ $(document).ready(function () {
     
     // функция которая вызывается при нажатии на button Add или button Edit, где button  - тип элемента DOM
     function showResponse( res ) {        
-                    $('#message-box-1').show('slow');
-                    $('#seller-type-links').show('slow');
+                    //$('#seller-type-links').show('slow');
         if ( $('input[name=id]').val() ) {
             if ( res.write ) {
                 console.log( 'Ad no. '+ res.get_write.id +' has been updated' );
@@ -113,6 +118,8 @@ $(document).ready(function () {
             var adress_in_DOM = "tbody#tbody-id tr:last";            
             show_message_for_empty_list();
         }
+        $('#seller-type-links').delay( 600 ).fadeIn('slow');
+        show_message_box_1();
         put_ad_to_list( adress_in_DOM, res.get_write );
         prepare_form_for_add_new_ad();
     }
@@ -125,7 +132,7 @@ $(document).ready(function () {
     // инициализируем тип продавца (компания или частное лицо)
     $('input[name=seller_type]').val('Company');
     // устанавиливаем событие на кнопку #message-box-1
-    $('#mb1b').on('click',function(){ $('#message-box-1').hide('slow'); });
+    $('#mb1b').on('click',function(){ $('#message-box-1').hide(); });
     
     // подключаем валидацию полей
     $.validate({
@@ -137,8 +144,8 @@ $(document).ready(function () {
     var options = { 
         success:    showResponse,  // post-submit callback б
         url:       'control_JS_17.php?action=add',         // override for form's 'action' attribute 
-        dataType:  'json',        // 'xml', 'script', or 'json' (expected server response type) 
-        resetForm: true        // reset the form after successful submit 
+        dataType:  'json'        // 'xml', 'script', or 'json' (expected server response type) 
+        //resetForm: true        // reset the form after successful submit 
     }; 
     // подключаем 'ajaxForm' к форме
     $('#adsform').ajaxForm( options );       
@@ -185,7 +192,6 @@ $(document).ready(function () {
         var trall = $('tr.ad');
 
         $.getJSON('control_JS_17.php?action=delete_all', function (response) {
-                    $('#message-box-1').show('slow');
             if ( response ) {
                 console.log( 'All ads have been removed from database' );
                 trall.fadeOut('fast');
@@ -200,6 +206,7 @@ $(document).ready(function () {
                     $('#message-box-1-text-header').text('Attention.');
                     $('#message-box-1-text').text( 'Some ads was not removed. Please reload the page to reflect the changes' );
             }
+            show_message_box_1();
         });
     });
 

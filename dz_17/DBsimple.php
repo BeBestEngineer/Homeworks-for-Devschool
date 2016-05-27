@@ -11,7 +11,7 @@ class Db {
         global $project_root;
         require_once $project_root."/dbsimple/config.php";
         require_once $project_root."/dbsimple/DbSimple/Generic.php";
-            $this -> db = DbSimple_Generic::connect( 'mysqli://alek:123@localhost/dz9table?charset=utf-8' );
+            $this -> db = @DbSimple_Generic::connect( 'mysqli://alek:123@localhost/dz9table?charset=utf-8' );
     }    
     public static function instance() {
         if ( self::$instance == NULL ) {

@@ -34,9 +34,9 @@ and open the template in the editor.
     <link href="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.19/theme-default.min.css" rel="stylesheet" type="text/css" />
     
         <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">-->
         <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>-->
         <!-- (Optional) Latest compiled and minified JavaScript translation files -->
     
         <!-- Local styles -->    

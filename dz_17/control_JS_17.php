@@ -7,7 +7,7 @@ $repository = AdsRepository::instance();
 
 switch( $_GET[ 'action' ] ) {
         case 'delete':
-            echo $repository -> Remove_ad_from_db ();
+            echo $repository -> Remove_ad_from_db( intval( $_GET[ 'del_id' ]));
         break;
         case 'delete_all':
             echo $repository -> Remove_all_ads_from_db ();
@@ -22,7 +22,7 @@ switch( $_GET[ 'action' ] ) {
             echo $repository -> Write_ad_to_db( $ad );
         break;
         case 'edit':
-            echo $repository -> get_ad_from_db_for_Edit();
+            echo $repository -> get_ad_from_db_for_Edit( intval( $_GET[ 'edit_id' ]));
         break;
         default:
         break;

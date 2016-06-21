@@ -144,8 +144,8 @@ $(document).ready(function () {
     var options = { 
         success:    showResponse,  // post-submit callback б
         url:       'control_JS_17.php?action=add',         // override for form's 'action' attribute 
-        dataType:  'json'        // 'xml', 'script', or 'json' (expected server response type) 
-        //resetForm: true        // reset the form after successful submit 
+        dataType:  'json',        // 'xml', 'script', or 'json' (expected server response type) 
+        resetForm: true        // reset the form after successful submit 
     }; 
     // подключаем 'ajaxForm' к форме
     $('#adsform').ajaxForm( options );       

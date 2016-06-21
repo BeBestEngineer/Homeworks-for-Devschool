@@ -12,16 +12,15 @@ class Ads {
     protected $seller_type;    
     
     function __construct( $from_ad ) {
- 
-            $this -> id           = $from_ad[ 'id' ];        
-            $this -> e_mail       = $from_ad[ 'e_mail' ];
-            $this -> phone_number = $from_ad[ 'phone_number' ];
-            $this -> city_id      = $from_ad[ 'city_id' ];
-            $this -> category_id  = $from_ad[ 'category_id' ];
-            $this -> title        = $from_ad[ 'title' ];
-            $this -> description  = $from_ad[ 'description' ];
-            $this -> price        = $from_ad[ 'price' ];        
-            $this -> seller_type  = $from_ad[ 'seller_type' ];        
+        $this -> id           = $from_ad[ 'id' ];        
+        $this -> e_mail       = $from_ad[ 'e_mail' ];
+        $this -> phone_number = $from_ad[ 'phone_number' ];
+        $this -> city_id      = $from_ad[ 'city_id' ];
+        $this -> category_id  = $from_ad[ 'category_id' ];
+        $this -> title        = $from_ad[ 'title' ];
+        $this -> description  = $from_ad[ 'description' ];
+        $this -> price        = $from_ad[ 'price' ];        
+        $this -> seller_type  = $from_ad[ 'seller_type' ];        
     }
     
     public function Get_All_Object_Properties() {
@@ -90,6 +89,11 @@ class AdsRepository {
     private $response_for_js = array();
     private $ads = array();
     private static $instance = NULL;
+    private $db;
+    
+    function __construct() {
+        $this -> db = Db::instance();
+    }
            
     public static function instance() {
         if ( self::$instance == NULL ) {
@@ -106,8 +110,8 @@ class AdsRepository {
     }    
     
     private function create_Storage() {
-        $db = Db::instance();
-        $all = $db -> select( 'SELECT * FROM ads ORDER BY id ASC' );
+        
+        $all = $this -> db -> select( 'SELECT * FROM ads ORDER BY id ASC' );
             foreach ( $all as $value ) {            
             
             if ( $value[ 'seller_type' ] == 'Company' ) {
@@ -135,12 +139,11 @@ class AdsRepository {
             die( 'Can not use this method in class conctructor' );    
         }       
         $vars = $ad -> Get_All_Object_Properties();
-        $db = Db::instance();
-
+        
         if ( $_POST['id'] == false ) {
-            $result = $db -> query( "INSERT INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars )); //возвращает ид объявления или false
+            $result = $this -> db -> query( "INSERT INTO ads(?#) VALUES(?a)", array_keys( $vars ), array_values( $vars )); //возвращает ид объявления или false
         } else {
-            $result = $db -> query( 'UPDATE ads SET ?a WHERE id = ?d', $vars, $vars['id'] );                       //возвращает количество обновлённых строк или 0
+            $result = $this -> db -> query( 'UPDATE ads SET ?a WHERE id = ?d', $vars, $vars['id'] );                       //возвращает количество обновлённых строк или 0
         }
         $this -> response_for_js['write'] = $result;
         $this -> response_for_js['get_write'] = $this -> get_ad_from_db();
@@ -148,40 +151,34 @@ class AdsRepository {
         return json_encode( $this -> response_for_js );
     }
     
-    public function Remove_ad_from_db () {
-        $db = Db::instance();
-        return json_encode( $db -> query( "DELETE FROM ads WHERE id = ?d", $_GET[ 'del_id' ]) );         
+    public function Remove_ad_from_db( $del_id ) {
+        return json_encode( $this -> db -> query( "DELETE FROM ads WHERE id = ?d", $del_id ));         
     }
 
     public function Remove_all_ads_from_db () {
-        $db = Db::instance();
-        return json_encode( $db -> query( "DELETE FROM ads" ) );
+        return json_encode( $this -> db -> query( "DELETE FROM ads" ) );
     }    
     
     private function Sel_of_Cities () {
-        $db = Db::instance();
-        return $db -> selectCol( 'SELECT city, region AS ARRAY_KEY_1, id_city as ARRAY_KEY_2 FROM russland' );
+        return $this -> db -> selectCol( 'SELECT city, region AS ARRAY_KEY_1, id_city as ARRAY_KEY_2 FROM russland' );
     }
 
     private function Sel_of_Categories () {    
-        $db = Db::instance();
-        return $db -> selectCol( 'SELECT category, section_category AS ARRAY_KEY_1, id_category as ARRAY_KEY_2 FROM categories' );        
+        return $this -> db -> selectCol( 'SELECT category, section_category AS ARRAY_KEY_1, id_category as ARRAY_KEY_2 FROM categories' );        
     }   
 
     public function get_ad_from_db() {
-        $db = Db::instance();
         if( $_POST['id'] == '' ) {
-            $result = $db -> selectRow( 'SELECT * FROM ads WHERE id=LAST_INSERT_ID()' );
+            $result = $this -> db -> selectRow( 'SELECT * FROM ads WHERE id=LAST_INSERT_ID()' );
         } else {
-            $result = $db -> selectRow( 'SELECT * FROM ads WHERE id = ?d', $_POST[ 'id' ]);
+            $result = $this -> db -> selectRow( 'SELECT * FROM ads WHERE id = ?d', $_POST[ 'id' ]);
         }
         return $result;
     }
     
-    public function get_ad_from_db_for_Edit() {
-        $db = Db::instance();
-        if ( $_GET[ 'edit_id' ] ) {
-            return json_encode( $db -> selectRow( "SELECT * FROM ads WHERE id = ?d", $_GET[ 'edit_id' ]) );
+    public function get_ad_from_db_for_Edit( $edit_id ) {
+        if ( $edit_id ) {
+            return json_encode( $this -> db -> selectRow( "SELECT * FROM ads WHERE id = ?d", $edit_id ));
         }
     }   
     
